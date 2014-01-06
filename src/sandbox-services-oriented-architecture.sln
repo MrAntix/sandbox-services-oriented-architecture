@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandbox.SOA.Portal", "Sandbox.SOA.Portal\Sandbox.SOA.Portal.csproj", "{EDD37142-4271-4EB7-A6D3-294E36634E9C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandbox.SOA.Services.Api", "Sandbox.SOA.Services.Api\Sandbox.SOA.Services.Api.csproj", "{5F09F166-D3C1-48C9-87AD-DEBDF57D1D38}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandbox.SOA.Services", "Sandbox.SOA.Services\Sandbox.SOA.Services.csproj", "{48436274-FA4E-40BF-8E59-1F09EC644964}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandbox.SOA.Common", "Sandbox.SOA.Common\Sandbox.SOA.Common.csproj", "{53911B75-411C-4E05-B0C6-4D3C0F4E4108}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandbox.SOA.Tests", "Sandbox.SOA.Tests\Sandbox.SOA.Tests.csproj", "{087438C6-4807-455F-9D4C-DCF4792DADE9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EDD37142-4271-4EB7-A6D3-294E36634E9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDD37142-4271-4EB7-A6D3-294E36634E9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDD37142-4271-4EB7-A6D3-294E36634E9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDD37142-4271-4EB7-A6D3-294E36634E9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F09F166-D3C1-48C9-87AD-DEBDF57D1D38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F09F166-D3C1-48C9-87AD-DEBDF57D1D38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F09F166-D3C1-48C9-87AD-DEBDF57D1D38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F09F166-D3C1-48C9-87AD-DEBDF57D1D38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48436274-FA4E-40BF-8E59-1F09EC644964}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48436274-FA4E-40BF-8E59-1F09EC644964}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48436274-FA4E-40BF-8E59-1F09EC644964}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48436274-FA4E-40BF-8E59-1F09EC644964}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53911B75-411C-4E05-B0C6-4D3C0F4E4108}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53911B75-411C-4E05-B0C6-4D3C0F4E4108}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53911B75-411C-4E05-B0C6-4D3C0F4E4108}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53911B75-411C-4E05-B0C6-4D3C0F4E4108}.Release|Any CPU.Build.0 = Release|Any CPU
+		{087438C6-4807-455F-9D4C-DCF4792DADE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{087438C6-4807-455F-9D4C-DCF4792DADE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{087438C6-4807-455F-9D4C-DCF4792DADE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{087438C6-4807-455F-9D4C-DCF4792DADE9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
