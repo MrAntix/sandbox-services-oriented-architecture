@@ -1,6 +1,5 @@
 ﻿using System.Web.Http;
 
-using Sandbox.SOA.Common.Contracts.People;
 using Sandbox.SOA.Common.Contracts.People.Addresses;
 using Sandbox.SOA.Common.Services;
 
@@ -14,7 +13,6 @@ namespace Sandbox.SOA.Services.Api.Controllers
         public PersonAddressController(ICommandHandler commandHandler)
         {
             _commandHandler = commandHandler;
-
         }
 
         [Route("")]

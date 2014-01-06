@@ -1,3 +1,4 @@
+using System;
 using System.Data.Entity.Migrations;
 using System.Linq;
 
@@ -19,11 +20,11 @@ namespace Sandbox.SOA.Services.Migrations
                    .AddOrUpdate(
                        p => p.Identifier,
                        new PersonData
-                           {
-                               Identifier = "69336C4C-07DB-45AA-ADCF-E14A8B9F30C7",
-                               FirstName = "Anthony",
-                               LastName = "Johnston",
-                               Addresses = new[]
+                       {
+                           Identifier = Guid.Parse("69336C4C-07DB-45AA-ADCF-E14A8B9F30C7"),
+                           FirstName = "Anthony",
+                           LastName = "Johnston",
+                           Addresses = new[]
                                    {
                                        new PersonAddressData
                                            {
@@ -31,13 +32,13 @@ namespace Sandbox.SOA.Services.Migrations
                                                County = "West Sussex"
                                            }
                                    }.ToList()
-                           },
+                       },
                        new PersonData
-                           {
-                               Identifier = "29336C4C-07DB-45AA-ADCF-E14A8B9F30C7",
-                               FirstName = "Sarah",
-                               LastName = "Johnston",
-                               Addresses = new[]
+                       {
+                           Identifier = Guid.Parse("29336C4C-07DB-45AA-ADCF-E14A8B9F30C7"),
+                           FirstName = "Sarah",
+                           LastName = "Johnston",
+                           Addresses = new[]
                                    {
                                        new PersonAddressData
                                            {
@@ -49,7 +50,7 @@ namespace Sandbox.SOA.Services.Migrations
                                                Name = "Work"
                                            }
                                    }.ToList()
-                           }
+                       }
                 );
         }
     }

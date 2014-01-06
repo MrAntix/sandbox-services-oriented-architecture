@@ -49,11 +49,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Data\DataContext.cs" />
     <Compile Include="Data\Models\EntityData.cs" />
     <Compile Include="Data\Models\PersonAddressData.cs" />
     <Compile Include="Data\Models\PersonData.cs" />
+    <Compile Include="Migrations\201401062033265_InitialCreate.cs" />
+    <Compile Include="Migrations\201401062033265_InitialCreate.Designer.cs">
+      <DependentUpon>201401062033265_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="People\Addresses\PersonAddressCreateService.cs" />
     <Compile Include="People\Addresses\PersonAddressDeleteService.cs" />
     <Compile Include="People\Addresses\PersonAddressesUpdateService.cs" />
@@ -78,6 +82,11 @@
       <Project>{53911B75-411C-4E05-B0C6-4D3C0F4E4108}</Project>
       <Name>Sandbox.SOA.Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201401062033265_InitialCreate.resx">
+      <DependentUpon>201401062033265_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

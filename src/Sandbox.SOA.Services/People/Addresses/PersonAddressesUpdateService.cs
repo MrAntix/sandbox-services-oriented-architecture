@@ -21,7 +21,7 @@ namespace Sandbox.SOA.Services.People.Addresses
         {
             var data = _dataContext.People
                                    .Include(p => p.Addresses)
-                                   .Single(p => p.Identifier == model.ParentIdentifier);
+                                   .Single(p => p.Identifier == model.Person.Identifier);
 
             var i = 0;
             foreach (var addressData in data.Addresses.OrderBy(d => d.Index))

@@ -2,7 +2,7 @@
 {
     public class PersonAddresses
     {
-        public string ParentIdentifier { get; set; }
+        public PersonIdentifier Person { get; set; }
         public int[] Index { get; set; }
     }
 }

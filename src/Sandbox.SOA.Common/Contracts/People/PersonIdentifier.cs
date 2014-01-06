@@ -1,7 +1,9 @@
-﻿namespace Sandbox.SOA.Common.Contracts.People
+﻿using System;
+
+namespace Sandbox.SOA.Common.Contracts.People
 {
     public class PersonIdentifier
     {
-        public string Identifier { get; set; }
+        public Guid Identifier { get; set; }
     }
 }

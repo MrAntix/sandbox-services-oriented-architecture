@@ -21,7 +21,7 @@ namespace Sandbox.SOA.Services.People
         {
             var data = new PersonData
                 {
-                    Identifier = Guid.NewGuid().ToString(),
+                    Identifier = Guid.NewGuid(),
                     FirstName = model.Name.First,
                     LastName = model.Name.Last
                 };
