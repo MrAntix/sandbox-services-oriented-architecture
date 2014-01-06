@@ -28,16 +28,10 @@ namespace Sandbox.SOA.Services.Migrations
                                        new PersonAddressData
                                            {
                                                Name = "Work",
-                                               Line1 = "Simpson View",
                                                County = "West Sussex"
                                            }
                                    }.ToList()
-                           }
-                );
-
-            context.People
-                   .AddOrUpdate(
-                       p => p.Identifier,
+                           },
                        new PersonData
                            {
                                Identifier = "29336C4C-07DB-45AA-ADCF-E14A8B9F30C7",
@@ -48,7 +42,6 @@ namespace Sandbox.SOA.Services.Migrations
                                        new PersonAddressData
                                            {
                                                Name = "Home",
-                                               Line1 = "Simpson View",
                                                County = "West Sussex"
                                            },
                                        new PersonAddressData
