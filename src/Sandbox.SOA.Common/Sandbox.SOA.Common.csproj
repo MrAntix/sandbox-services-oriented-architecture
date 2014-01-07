@@ -54,7 +54,6 @@
     <Compile Include="Contracts\People\PersonSearchCriteria.cs" />
     <Compile Include="Contracts\People\PersonSearchResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\CommandHandler.cs" />
     <Compile Include="Services\ICommand.cs" />
     <Compile Include="Services\ICommandHandler.cs" />
     <Compile Include="Services\Models\SearchCriteria.cs" />

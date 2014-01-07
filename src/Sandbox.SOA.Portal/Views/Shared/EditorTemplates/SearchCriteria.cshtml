@@ -1,0 +1,15 @@
+﻿@model Sandbox.SOA.Common.Services.Models.SearchCriteria
+
+<fieldset>
+    <div class="form-field form-field-search">
+
+        <div class="form-field-edit">
+            @Html.EditorFor(m=>m.Text)
+        </div>
+        <button type="submit">Search</button>
+    </div>
+
+    @Html.ValidationSummary()
+</fieldset>
+
+

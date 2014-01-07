@@ -1,0 +1,21 @@
+﻿@model Sandbox.SOA.Portal.Models.PersonGrid
+
+<table>
+    <thead>
+        <th>Name</th>
+        <th>Primary Address</th>
+    </thead>
+    <tbody>
+        @foreach (var model in Model.Items)
+        {
+            <tr>
+                @Html.EditorFor(m => model)
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <th colspan="2"><a href="#">Create</a></th>
+        </tr>
+    </tfoot>
+</table>
