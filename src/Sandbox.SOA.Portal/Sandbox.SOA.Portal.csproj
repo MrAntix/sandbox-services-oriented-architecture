@@ -123,7 +123,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\PersonGrid.cs" />
+    <Compile Include="Models\PersonNameView.cs" />
     <Compile Include="Models\PersonRow.cs" />
+    <Compile Include="Models\PersonView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

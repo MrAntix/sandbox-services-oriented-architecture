@@ -29,5 +29,11 @@ namespace Sandbox.SOA.Portal.Controllers
         {
             return _actionHandler.With(model).Returns<PersonGrid>();
         }
+
+        [Route("edit/{identifier}")]
+        public ActionResult Edit(string model)
+        {
+            return _actionHandler.With(model).Returns<PersonView>();
+        }
     }
 }

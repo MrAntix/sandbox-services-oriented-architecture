@@ -1,10 +1,10 @@
-﻿using Antix;
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+
+using Antix;
 
 using Newtonsoft.Json.Linq;
 
@@ -47,13 +47,24 @@ namespace Sandbox.SOA.Portal
         public WebApiClientCommandHandler Get<TIn>(string urlTemplate)
         {
             _routes.Add(typeof (TIn),
-                        (c, m) => c.GetAsync(urlTemplate));
+                        (c, m) => c.GetAsync(UrlForGet(m, urlTemplate)));
             return this;
         }
 
         public WebApiClientCommandHandler Get<TIn, TOut>(string urlTemplate)
         {
             return Get<Tuple<TIn, TOut>>(urlTemplate);
+        }
+
+        static string UrlForGet<T>(T model, string urlTemplate)
+        {
+            var data = ToDictionary(model);
+            var url = MergeUrl(urlTemplate, data);
+            var queryString = ToQueryString(data);
+
+            return url.Contains("?")
+                       ? string.Concat(url, "&", queryString)
+                       : string.Concat(url, "?", queryString);
         }
 
         public static string ToQueryString(IEnumerable<KeyValuePair<string, string>> values)
