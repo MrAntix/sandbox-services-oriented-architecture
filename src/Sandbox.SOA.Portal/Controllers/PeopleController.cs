@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 using Sandbox.SOA.Common.Contracts.People;
 using Sandbox.SOA.Common.Services;
@@ -21,7 +20,7 @@ namespace Sandbox.SOA.Portal.Controllers
 
         public PeopleController() :
             this(new WebApiClientCommandHandler("http://localhost:60746/")
-                     .Register<PersonSearchCriteria, PersonGrid>("people"))
+                     .Get<PersonSearchCriteria, PersonGrid>("people"))
         {
         }
 
