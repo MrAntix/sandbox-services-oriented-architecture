@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -44,19 +46,34 @@ namespace Sandbox.SOA.Portal
             return result;
         }
 
-        public WebApiClientCommandHandler Get<TIn>(string urlTemplate)
+        public WebApiClientCommandHandler Get<TIn, TOut>(string urlTemplate)
         {
-            _routes.Add(typeof (TIn),
-                        (c, m) => c.GetAsync(UrlForGet(m, urlTemplate)));
+            _routes.Add(typeof(Tuple<TIn, TOut>),
+                        (c, m) => c.GetAsync(MergeAndQueryUrl(m, urlTemplate)));
             return this;
         }
 
-        public WebApiClientCommandHandler Get<TIn, TOut>(string urlTemplate)
+        public WebApiClientCommandHandler Post<TIn, TOut>(string urlTemplate)
         {
-            return Get<Tuple<TIn, TOut>>(urlTemplate);
+            _routes.Add(typeof(Tuple<TIn, TOut>),
+                        (c, m) => c.PostAsJsonAsync(MergeUrl(m, urlTemplate), m));
+            return this;
         }
 
-        static string UrlForGet<T>(T model, string urlTemplate)
+        public WebApiClientCommandHandler Put<TIn>(string urlTemplate)
+        {
+            _routes.Add(typeof(TIn),
+                        (c, m) => c.PutAsJsonAsync(MergeUrl(m, urlTemplate), m));
+            return this;
+        }
+
+        static string MergeUrl<T>(T model, string urlTemplate)
+        {
+            var data = ToDictionary(model);
+            return MergeUrl(urlTemplate, data);
+        }
+
+        static string MergeAndQueryUrl<T>(T model, string urlTemplate)
         {
             var data = ToDictionary(model);
             var url = MergeUrl(urlTemplate, data);
@@ -131,5 +148,7 @@ namespace Sandbox.SOA.Portal
                     name, property.Value.ToString());
             }
         }
+
+
     }
 }

@@ -24,6 +24,7 @@ namespace Sandbox.SOA.Portal.Controllers
             this(new WebApiClientCommandHandler("http://localhost:60746/")
                      .Get<PersonSearchCriteria, PersonGrid>("people")
                      .Get<PersonIdentifier, PersonEdit>("people/{identifier}")
+                     .Put<Person>("people/{identifier}")
             )
         {
         }
@@ -38,13 +39,21 @@ namespace Sandbox.SOA.Portal.Controllers
         public ActionResult Edit(PersonIdentifier model)
         {
             ViewData["CountryCode"] = Phone.CountryConfigurations
-                .Select(c=>new SelectListItem
-                    {
-                        Text = GetFormattedDialingPrefix(c),
-                        Value = c.CountryCode
-                    });
+                .Select(c => new SelectListItem
+                {
+                    Text = GetFormattedDialingPrefix(c),
+                    Value = c.CountryCode
+                });
 
             return _actionHandler.With(model).Returns<PersonEdit>();
+        }
+
+        [HttpPost]
+        [Route("edit/{identifier}", Name = RouteConfig.PersonEditPost)]
+        public ActionResult Edit(Person model)
+        {
+            return _actionHandler.With(model)
+                                 .Done(() => Edit((PersonIdentifier) model));
         }
 
         static string GetFormattedDialingPrefix(PhoneCountryConfiguration config)

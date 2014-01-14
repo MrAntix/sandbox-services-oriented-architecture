@@ -1,6 +1,6 @@
 ﻿@model Sandbox.SOA.Portal.Models.Person.PersonEdit
 
-<form action="@Url.RouteUrl("People", new {identifier = Model.Identifier})"
+<form action="@Url.PersonEdit(Model.Identifier)"
       method="POST"
       role="form" class="form-horizontal">
     
