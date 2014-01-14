@@ -5,7 +5,7 @@
         var $this = $(this),
             $prefix = $this.find("select"),
             $number = $this.find("input"),
-            $dropdownValue = $("<span class='value'>&nbsp;</span>").css("paddingRight",".5em"),
+            $dropdownValue = $("<span class='value'></span>").css("paddingRight",".5em"),
             $dropdownButton = $("<span class='input-group-addon dropdown-toggle' data-toggle='dropdown'/>")
                 .append($dropdownValue)
                 .append("<span class='caret'/>"),
@@ -67,25 +67,25 @@
             selected =
                 $dropdownList.append(
                     $("<li>").append($newOption));
-
-            if ($option.is(":selected"))
-                select.call($newOption);
         });
 
         $this.find(".input-group-addon")
-            .replaceWith($dropdownButton);
+            .before($dropdownButton)
+            .hide();
 
         $dropdownButton
             .after($dropdownList);
 
-        $number.on("keyup", function() {
+        var match = function() {
             var m = $number.val().match(prefixRegex);
             if (m[0]) {
                 var prefix = getPrefix(m[0]);
                 select.call(all[prefix]);
             }
-        });
+        };
+        $number.on("keyup", match);
 
+        match();
     };
 
 })(jQuery);
