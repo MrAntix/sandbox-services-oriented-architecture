@@ -31,7 +31,6 @@ namespace Sandbox.SOA.Services.People
                             },
                         MobilePhone  = new PersonMobilePhone
                             {
-                                CountryCode = p.MobilePhone.CountryCode,
                                 Number = p.MobilePhone.Number
                             }
                     }).Single();

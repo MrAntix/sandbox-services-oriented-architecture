@@ -69,6 +69,7 @@
     <Compile Include="Contracts\People\PersonIdentifier.cs" />
     <Compile Include="Contracts\People\PersonInfo.cs" />
     <Compile Include="Contracts\People\PersonMobilePhone.cs" />
+    <Compile Include="Contracts\People\PersonMobilePhoneInfo.cs" />
     <Compile Include="Contracts\People\PersonName.cs" />
     <Compile Include="Contracts\People\PersonSearchCriteria.cs" />
     <Compile Include="Contracts\People\PersonSearchResult.cs" />

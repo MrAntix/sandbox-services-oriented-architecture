@@ -1,7 +1,7 @@
 ﻿@model Sandbox.SOA.Portal.Models.Person.PersonGrid
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "People";
 }
 
 @section breadcrumb{
@@ -12,6 +12,8 @@
           .Render())
 }
 
-<h2>Index</h2>
+<div class="page-header">
+    <h2>People</h2>
+</div>
 
 @Html.Partial("IndexForm")

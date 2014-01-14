@@ -1,6 +1,6 @@
 ﻿namespace Sandbox.SOA.Common.Contracts.People
 {
-    public class PersonMobilePhone
+    public class PersonMobilePhoneInfo
     {
         public string Number { get; set; }
     }

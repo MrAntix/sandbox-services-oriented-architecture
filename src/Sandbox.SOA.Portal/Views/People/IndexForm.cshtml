@@ -1,9 +1,22 @@
 ﻿@model Sandbox.SOA.Portal.Models.Person.PersonGrid
 
-<form method="Get">
+<form action="@Url.People()"
+      method="GET"
+      role="form" class="form-inline pull-right">
     
     @Html.EditorFor(m=>m.Criteria, null, "")
 </form>
-<form>
+
+<form class="clearfix">
     @Html.EditorForModel()    
 </form>
+
+<ul class="pagination pull-right">
+  <li><a href="#">&laquo;</a></li>
+  <li><a href="#">1</a></li>
+  <li><a href="#">2</a></li>
+  <li><a href="#">3</a></li>
+  <li><a href="#">4</a></li>
+  <li><a href="#">5</a></li>
+  <li><a href="#">&raquo;</a></li>
+</ul>

@@ -1,4 +1,5 @@
 ﻿@model Sandbox.SOA.Portal.Models.Person.PersonRow
 
 <td><a href="@Url.Action("Edit", new {identifier = Model.Identifier})">@Model.Name.Full</a></td>
+<td>@Html.DisplayFor(m => Model.MobilePhone)</td>
 <td>@Html.DisplayFor(m => Model.DefaultAddress)</td>

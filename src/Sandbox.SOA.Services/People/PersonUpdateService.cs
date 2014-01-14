@@ -30,7 +30,6 @@ namespace Sandbox.SOA.Services.People
             {
                 data.MobilePhone = new MobilePhoneData
                     {
-                        CountryCode = model.MobilePhone.CountryCode,
                         Number = model.MobilePhone.Number
                     };
             }

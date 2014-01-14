@@ -1,6 +1,5 @@
 ﻿using System.Data.Entity;
 using System.Linq;
-
 using Sandbox.SOA.Common.Contracts.People;
 using Sandbox.SOA.Common.Contracts.People.Addresses;
 using Sandbox.SOA.Common.Services;
@@ -45,6 +44,10 @@ namespace Sandbox.SOA.Services.People
                                        {
                                            First = p.FirstName,
                                            Last = p.LastName,
+                                       },
+                                   MobilePhone = new PersonMobilePhoneInfo
+                                       {
+                                           Number = p.MobilePhone.Number
                                        },
                                    DefaultAddress = (from a in p.Addresses
                                                      orderby a.Index
