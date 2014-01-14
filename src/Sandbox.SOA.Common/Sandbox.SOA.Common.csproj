@@ -33,6 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,6 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Antix\Data\Static\Phone.cs" />
+    <Compile Include="Antix\Data\Static\PhoneConfigurationSection.cs" />
+    <Compile Include="Antix\Data\Static\PhoneCountryConfiguration.cs" />
+    <Compile Include="Antix\Data\Static\PhoneCountryConfigurations.cs" />
     <Compile Include="Antix\IO\IOExtensions.cs" />
     <Compile Include="Antix\Logging\ILogAdapter.cs" />
     <Compile Include="Antix\Logging\LoggerExtensionsDebug.cs" />
@@ -63,6 +68,7 @@
     <Compile Include="Contracts\People\PersonDelete.cs" />
     <Compile Include="Contracts\People\PersonIdentifier.cs" />
     <Compile Include="Contracts\People\PersonInfo.cs" />
+    <Compile Include="Contracts\People\PersonMobilePhone.cs" />
     <Compile Include="Contracts\People\PersonName.cs" />
     <Compile Include="Contracts\People\PersonSearchCriteria.cs" />
     <Compile Include="Contracts\People\PersonSearchResult.cs" />

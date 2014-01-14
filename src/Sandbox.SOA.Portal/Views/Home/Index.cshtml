@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+@section breadcrumb{
+
+    @(Html.Breadcrumb()
+          .Add("Home", Url.Home())
+          .Render())
+}
+
+<h2>Index</h2>
+
+<p><a href="@Url.People()">People</a></p>

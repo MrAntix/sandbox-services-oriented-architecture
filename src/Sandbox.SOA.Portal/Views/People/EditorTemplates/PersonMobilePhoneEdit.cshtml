@@ -1,0 +1,13 @@
+﻿@model Sandbox.SOA.Portal.Models.Person.PersonMobilePhoneEdit
+
+@{ 
+    Layout = "~/Views/Shared/EditorTemplates/_Layout.cshtml";
+    ViewData["class"] = "phone mobile-phone";
+}
+
+<div class="input-group">
+    <span class="input-group-addon">
+        @Html.DropDownListFor(m=>m.CountryCode, ViewData.GetList(), ViewData.GetListOption())
+    </span>
+    @Html.TextBoxFor(m=>m.Number, new {@class="form-control"})
+</div>

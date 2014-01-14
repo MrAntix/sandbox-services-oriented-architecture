@@ -28,6 +28,11 @@ namespace Sandbox.SOA.Services.People
                             {
                                 First = p.FirstName,
                                 Last = p.LastName
+                            },
+                        MobilePhone  = new PersonMobilePhone
+                            {
+                                CountryCode = p.MobilePhone.CountryCode,
+                                Number = p.MobilePhone.Number
                             }
                     }).Single();
         }

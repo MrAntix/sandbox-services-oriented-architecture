@@ -3,5 +3,6 @@
     public class Person : PersonIdentifier
     {
         public PersonName Name { get; set; }
+        public PersonMobilePhone MobilePhone { get; set; }
     }
 }

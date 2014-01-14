@@ -29,6 +29,8 @@ namespace Sandbox.SOA.Services.Data
 
             modelBuilder.Entity<PersonAddressData>()
                         .HasKey(d => d.Id);
+
+            modelBuilder.ComplexType<MobilePhoneData>();
         }
     }
 }

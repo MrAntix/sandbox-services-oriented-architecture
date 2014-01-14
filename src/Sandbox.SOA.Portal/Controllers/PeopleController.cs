@@ -1,8 +1,10 @@
-﻿using System.Web.Mvc;
-
+﻿using System.Linq;
+using System.Web.Mvc;
+using Antix.Data.Static;
 using Sandbox.SOA.Common.Contracts.People;
 using Sandbox.SOA.Common.Services;
 using Sandbox.SOA.Portal.Models;
+using Sandbox.SOA.Portal.Models.Person;
 
 namespace Sandbox.SOA.Portal.Controllers
 {
@@ -20,20 +22,37 @@ namespace Sandbox.SOA.Portal.Controllers
 
         public PeopleController() :
             this(new WebApiClientCommandHandler("http://localhost:60746/")
-                     .Get<PersonSearchCriteria, PersonGrid>("people"))
+                     .Get<PersonSearchCriteria, PersonGrid>("people")
+                     .Get<PersonIdentifier, PersonEdit>("people/{identifier}")
+            )
         {
         }
 
-        [Route("")]
+        [Route("", Name = RouteConfig.People)]
         public ActionResult Index(PersonSearchCriteria model)
         {
             return _actionHandler.With(model).Returns<PersonGrid>();
         }
 
-        [Route("edit/{identifier}")]
-        public ActionResult Edit(string model)
+        [Route("edit/{identifier}", Name = RouteConfig.PersonEdit)]
+        public ActionResult Edit(PersonIdentifier model)
         {
-            return _actionHandler.With(model).Returns<PersonView>();
+            ViewData["CountryCode"] = Phone.CountryConfigurations
+                .Select(c=>new SelectListItem
+                    {
+                        Text = GetFormattedDialingPrefix(c),
+                        Value = c.CountryCode
+                    });
+
+            return _actionHandler.With(model).Returns<PersonEdit>();
+        }
+
+        static string GetFormattedDialingPrefix(PhoneCountryConfiguration config)
+        {
+            return string.Concat("+", config.CountryDialing, " ",
+                                 string.IsNullOrWhiteSpace(config.NationalDirectDialing)
+                                     ? ""
+                                     : string.Concat("(", config.NationalDirectDialing, ") "));
         }
     }
 }

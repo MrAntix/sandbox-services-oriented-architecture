@@ -1,0 +1,17 @@
+﻿@model Sandbox.SOA.Portal.Models.Person.PersonEdit
+
+<form action="@Url.RouteUrl("People", new {identifier = Model.Identifier})"
+      method="POST"
+      role="form" class="form-horizontal">
+    
+    @Html.EditorFor(m=>m.Name)
+    @Html.EditorFor(m=>m.MobilePhone)
+
+    <footer>
+        <p>
+            <button type="submit">Save</button>
+        </p>
+
+    </footer>
+</form>
+

@@ -4,6 +4,7 @@ using System.Linq;
 using Sandbox.SOA.Common.Contracts.People;
 using Sandbox.SOA.Common.Services;
 using Sandbox.SOA.Services.Data;
+using Sandbox.SOA.Services.Data.Models;
 
 namespace Sandbox.SOA.Services.People
 {
@@ -25,6 +26,14 @@ namespace Sandbox.SOA.Services.People
 
             data.FirstName = model.Name.First;
             data.LastName = model.Name.Last;
+            if (model.MobilePhone != null)
+            {
+                data.MobilePhone = new MobilePhoneData
+                    {
+                        CountryCode = model.MobilePhone.CountryCode,
+                        Number = model.MobilePhone.Number
+                    };
+            }
 
             _dataContext.SaveChanges();
         }

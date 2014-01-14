@@ -1,0 +1,11 @@
+﻿@model Sandbox.SOA.Portal.Models.Person.DropdownList
+
+@{ 
+    Layout = "_Layout.cshtml";
+
+    var htmlAttributes = ViewData
+        .Extract("placeholder")
+        .Include("class", "form-control");
+}
+
+@Html.DropDownList("Value", ViewData.GetList(), ViewData.GetListOption(), htmlAttributes)

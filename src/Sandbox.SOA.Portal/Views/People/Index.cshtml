@@ -1,7 +1,15 @@
-﻿@model Sandbox.SOA.Portal.Models.PersonGrid
+﻿@model Sandbox.SOA.Portal.Models.Person.PersonGrid
 
 @{
     ViewBag.Title = "Index";
+}
+
+@section breadcrumb{
+
+    @(Html.Breadcrumb()
+          .Add("Home", Url.Home())
+          .Add("People", Url.People())
+          .Render())
 }
 
 <h2>Index</h2>

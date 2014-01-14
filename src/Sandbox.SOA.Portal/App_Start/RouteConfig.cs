@@ -10,5 +10,9 @@ namespace Sandbox.SOA.Portal
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.MapMvcAttributeRoutes();
         }
+
+        public const string Home = "Home";
+        public const string People = "People";
+        public const string PersonEdit = "PersonEdit";
     }
 }

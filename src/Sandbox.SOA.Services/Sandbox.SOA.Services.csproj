@@ -53,6 +53,7 @@
     <Compile Include="Data\Models\EntityData.cs" />
     <Compile Include="Data\Models\PersonAddressData.cs" />
     <Compile Include="Data\Models\PersonData.cs" />
+    <Compile Include="Data\Models\MobilePhoneData.cs" />
     <Compile Include="Migrations\201401062033265_InitialCreate.cs" />
     <Compile Include="Migrations\201401062033265_InitialCreate.Designer.cs">
       <DependentUpon>201401062033265_InitialCreate.cs</DependentUpon>

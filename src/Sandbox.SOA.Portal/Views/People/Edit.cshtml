@@ -1,0 +1,18 @@
+﻿@model Sandbox.SOA.Portal.Models.Person.PersonEdit
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@section breadcrumb{
+
+    @(Html.Breadcrumb()
+          .Add("Home", Url.Home())
+          .Add("People", Url.People())
+          .Add("Edit", Url.PersonEdit(Model.Identifier))
+          .Render())
+}
+
+<h2>Edit</h2>
+
+@Html.Partial("EditForm")

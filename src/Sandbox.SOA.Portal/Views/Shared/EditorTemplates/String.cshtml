@@ -1,0 +1,11 @@
+﻿@model object
+
+@{ 
+    Layout = "_Layout.cshtml";
+
+    var htmlAttributes = ViewData
+        .Extract("placeholder")
+        .Include("class", "form-control");
+}
+
+@Html.TextBox(string.Empty, Model, htmlAttributes)

@@ -1,0 +1,12 @@
+﻿@model IEnumerable<BreadcrumbHelper.Crumb>
+
+<nav>
+    <ol class="breadcrumb">
+        @foreach (var crumb in Model)
+        {
+            <li>
+                <a href="@crumb.Url">@crumb.Text</a>
+            </li>
+        }
+    </ol>
+</nav>
