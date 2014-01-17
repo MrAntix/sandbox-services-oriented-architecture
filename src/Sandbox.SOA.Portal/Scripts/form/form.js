@@ -8,7 +8,7 @@
         $(".phone").phone();
 
         $("body").on(
-            "submit", "form",
+            "submit", "form[method='POST']",
             function() {
                 
                 var $form = $(this),
