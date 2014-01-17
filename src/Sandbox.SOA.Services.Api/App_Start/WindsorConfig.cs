@@ -10,6 +10,7 @@ using FluentValidation;
 
 using Sandbox.SOA.Common.Services;
 using Sandbox.SOA.Common.Validation;
+using Sandbox.SOA.Common.Validation.People;
 using Sandbox.SOA.Services.Data;
 using Sandbox.SOA.Services.People;
 
@@ -24,16 +25,6 @@ namespace Sandbox.SOA.Services.Api
                 Classes.FromAssembly(typeof (PersonGetService).Assembly)
                        .Where(t => (typeof (ICommand).IsAssignableFrom(t)))
                        .WithServiceAllInterfaces()
-                );
-
-            container.Register(
-                Types.FromAssemblyInThisApplication()
-                     .BasedOn(typeof (IValidator<>))
-                     .WithServiceFromInterface(typeof (IValidator<>))
-
-                //Classes.FromAssemblyContaining(typeof(PersonInfoValidator))
-                //       .InSameNamespaceAs<PersonInfoValidator>()
-                //       .WithServiceAllInterfaces()
                 );
 
             container.Register(
@@ -57,6 +48,12 @@ namespace Sandbox.SOA.Services.Api
                 new WebApiHttpControllerActivator(
                     t => (IHttpController) container.Resolve(t),
                     container.Release)
+                );
+
+            container.Register(
+                Classes.FromAssemblyContaining(typeof(PersonInfoValidator))
+                       .InSameNamespaceAs<PersonInfoValidator>()
+                       .WithServiceAllInterfaces()
                 );
 
             configuration.Services.Replace(

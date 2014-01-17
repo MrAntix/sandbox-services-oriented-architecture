@@ -17,7 +17,7 @@ namespace Sandbox.SOA.Common.Validation
 
         public IEnumerable<ValidationFailure> Validate<TIn>(TIn model)
         {
-            var validator = _getValidator(typeof (TIn));
+            var validator = _getValidator(typeof (IValidator<TIn>));
             if (validator == null)
                 return new ValidationFailure[] {};
 
