@@ -3,7 +3,6 @@ using System.Web.Mvc;
 using Antix.Data.Static;
 using Sandbox.SOA.Common.Contracts.People;
 using Sandbox.SOA.Common.Services;
-using Sandbox.SOA.Portal.Models;
 using Sandbox.SOA.Portal.Models.Person;
 
 namespace Sandbox.SOA.Portal.Controllers
@@ -16,36 +15,60 @@ namespace Sandbox.SOA.Portal.Controllers
         public PeopleController(ICommandHandler commandHandler)
         {
             _actionHandler = new ActionHandler(
-                this, View, RedirectToAction,
+                this, AjaxView, RedirectToAction,
                 commandHandler);
         }
 
         public PeopleController() :
-            this(new WebApiClientCommandHandler("http://localhost:60746/")
-                     .Get<PersonSearchCriteria, PersonGrid>("people")
-                     .Get<PersonIdentifier, PersonEdit>("people/{identifier}")
+            this(new ClientCommandHandler("http://localhost:60746/")
+                     .Get<PersonSearchCriteria, PersonGridViewModel>("people")
+                     .Get<PersonIdentifier, PersonEditViewModel>("people/{identifier}")
+                     .Get<PersonIdentifier, PersonDeleteViewModel>("people/{identifier}")
+                     .Post<PersonInfo, PersonIdentifier>("people")
                      .Put<Person>("people/{identifier}")
+                     .Delete<PersonIdentifier>("people/{identifier}")
             )
         {
+        }
+
+        ActionResult AjaxView(object model)
+        {
+            return Request.IsAjaxRequest()
+                       ? View(null, "_LayoutModal", model)
+                       : View(model);
         }
 
         [Route("", Name = RouteConfig.People)]
         public ActionResult Index(PersonSearchCriteria model)
         {
-            return _actionHandler.With(model).Returns<PersonGrid>();
+            return _actionHandler.With(model).Returns<PersonGridViewModel>();
+        }
+
+        [Route("create", Name = RouteConfig.PersonCreate)]
+        public ActionResult Create()
+        {
+            return AjaxView(null);
+        }
+
+        [HttpPost]
+        [Route("create", Name = RouteConfig.PersonCreatePost)]
+        public ActionResult Create(PersonInfo model)
+        {
+            return _actionHandler.With(model).Returns<PersonIdentifier>()
+                                 .Done("Edit", p => p);
         }
 
         [Route("edit/{identifier}", Name = RouteConfig.PersonEdit)]
         public ActionResult Edit(PersonIdentifier model)
         {
             ViewData["CountryCode"] = Phone.CountryConfigurations
-                .Select(c => new SelectListItem
-                {
-                    Text = GetFormattedDialingPrefix(c),
-                    Value = c.CountryCode
-                });
+                                           .Select(c => new SelectListItem
+                                               {
+                                                   Text = GetFormattedDialingPrefix(c),
+                                                   Value = c.CountryCode
+                                               });
 
-            return _actionHandler.With(model).Returns<PersonEdit>();
+            return _actionHandler.With(model).Returns<PersonEditViewModel>();
         }
 
         [HttpPost]
@@ -62,6 +85,21 @@ namespace Sandbox.SOA.Portal.Controllers
                                  string.IsNullOrWhiteSpace(config.NationalDirectDialing)
                                      ? ""
                                      : string.Concat("(", config.NationalDirectDialing, ") "));
+        }
+
+        [Route("delete", Name = RouteConfig.PersonDelete)]
+        public ActionResult Delete(PersonIdentifier model)
+        {
+            return _actionHandler.With(model).Returns<PersonDeleteViewModel>();
+        }
+
+        [HttpPost]
+        [ActionName("Delete")]
+        [Route("delete", Name = RouteConfig.PersonDeletePost)]
+        public ActionResult DeletePost(PersonIdentifier model)
+        {
+            return _actionHandler.With(model)
+                                 .Done("Index");
         }
     }
 }

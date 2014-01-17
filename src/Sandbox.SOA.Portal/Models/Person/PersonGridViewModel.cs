@@ -2,7 +2,7 @@
 
 namespace Sandbox.SOA.Portal.Models.Person
 {
-    public class PersonGrid : SearchResult<PersonRow>
+    public class PersonGridViewModel : SearchResult<PersonRowViewModel>
     {
     }
 }

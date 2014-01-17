@@ -7,14 +7,14 @@ using Xunit;
 
 namespace Sandbox.SOA.Tests
 {
-    public class WebApiClientCommandHandlerTest
+    public class ClientCommandHandlerTest
     {
         [Fact]
         public void simple_object_to_dictionary()
         {
             var input = new {One = "1"};
 
-            var output = WebApiClientCommandHandler.ToDictionary(input)
+            var output = ClientCommandHandler.ToDictionary(input)
                                                    .Single();
 
             Assert.Equal("One", output.Key);
@@ -26,7 +26,7 @@ namespace Sandbox.SOA.Tests
         {
             var input = new {One = "1", Two = new {Three = "2.3"}};
 
-            var output = WebApiClientCommandHandler.ToDictionary(input);
+            var output = ClientCommandHandler.ToDictionary(input);
 
             Assert.Equal(2, output.Count);
 
@@ -45,7 +45,7 @@ namespace Sandbox.SOA.Tests
                         {"THING.one", "THINGVALUE"}
                     };
 
-            var result = WebApiClientCommandHandler
+            var result = ClientCommandHandler
                 .MergeUrl("/blaa/{thing.one}/lala", values);
 
             Assert.Equal("/blaa/THINGVALUE/lala", result);
@@ -60,7 +60,7 @@ namespace Sandbox.SOA.Tests
                         {"THING.one", "THING/VALUE"}
                     };
 
-            var result = WebApiClientCommandHandler
+            var result = ClientCommandHandler
                 .MergeUrl("/blaa/{thing.one}/lala", values);
 
             Assert.Equal("/blaa/THING%2FVALUE/lala", result);
@@ -76,7 +76,7 @@ namespace Sandbox.SOA.Tests
                         {"NOTFOUND", "THINGVALUE"}
                     };
 
-            WebApiClientCommandHandler
+            ClientCommandHandler
                 .MergeUrl("/blaa/{thing.one}/lala", values);
 
             Assert.Equal("NOTFOUND", values.Single().Key);
@@ -92,7 +92,7 @@ namespace Sandbox.SOA.Tests
                         {"NOTFOUND", "THINGVALUE"}
                     };
 
-            var result = WebApiClientCommandHandler
+            var result = ClientCommandHandler
                 .ToQueryString( values);
 
             Assert.Equal("THING.one=THING%2FVALUE&NOTFOUND=THINGVALUE", result);

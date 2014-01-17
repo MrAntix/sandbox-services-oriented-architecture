@@ -3,17 +3,19 @@ using System.Net.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Dispatcher;
 
-using Castle.Windsor;
-
 namespace Sandbox.SOA.Services.Api
 {
-    public class WindsorHttpControllerActivator : IHttpControllerActivator
+    public class WebApiHttpControllerActivator : IHttpControllerActivator
     {
-        readonly IWindsorContainer _container;
+        readonly Func<Type, IHttpController> _create;
+        readonly Action<IHttpController> _release;
 
-        public WindsorHttpControllerActivator(IWindsorContainer container)
+        public WebApiHttpControllerActivator(
+            Func<Type, IHttpController> create,
+            Action<IHttpController> release)
         {
-            _container = container;
+            _create = create;
+            _release = release;
         }
 
         public IHttpController Create(
@@ -21,12 +23,11 @@ namespace Sandbox.SOA.Services.Api
             HttpControllerDescriptor controllerDescriptor,
             Type controllerType)
         {
-            var controller =
-                (IHttpController) _container.Resolve(controllerType);
+            var controller = _create(controllerType);
 
             request.RegisterForDispose(
                 new Disposable(
-                    () => _container.Release(controller)));
+                    () => _release(controller)));
 
             return controller;
         }

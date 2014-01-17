@@ -1,0 +1,16 @@
+﻿@model Sandbox.SOA.Portal.Models.Person.PersonDeleteViewModel
+
+@{
+    ViewBag.Title = "Person Delete";
+}
+
+@section breadcrumb{
+
+    @(Html.Breadcrumb()
+          .Add("Home", Url.Home())
+          .Add("People", Url.People())
+          .Add("Delete", Url.PersonDelete(Model.Identifier))
+          .Render())
+}
+
+@Html.Partial("DeleteForm")

@@ -19,12 +19,27 @@ namespace Sandbox.SOA.Portal
             return urlHelper.RouteUrl(RouteConfig.People);
         }
 
+        public static string PersonCreate(
+            this UrlHelper urlHelper
+            )
+        {
+            return urlHelper.RouteUrl(RouteConfig.PersonCreate);
+        }
+
         public static string PersonEdit(
             this UrlHelper urlHelper,
             string identifier
             )
         {
             return urlHelper.RouteUrl(RouteConfig.PersonEdit, new { identifier });
+        }
+
+        public static string PersonDelete(
+            this UrlHelper urlHelper,
+            string identifier
+            )
+        {
+            return urlHelper.RouteUrl(RouteConfig.PersonDelete, new { identifier });
         }
 
         //public static string People(

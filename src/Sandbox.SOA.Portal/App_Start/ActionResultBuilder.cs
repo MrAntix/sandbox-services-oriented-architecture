@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
 
@@ -142,7 +143,7 @@ namespace Sandbox.SOA.Portal
 
                     return OrDefault(_done);
                 }
-                catch (Exception ex)
+                catch (HttpRequestException ex)
                 {
                     _controller.ModelState
                                .AddModelError(string.Empty, ex.Message);

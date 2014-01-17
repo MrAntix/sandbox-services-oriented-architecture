@@ -1,4 +1,4 @@
-﻿@model Sandbox.SOA.Portal.Models.Person.PersonEdit
+﻿@model Sandbox.SOA.Portal.Models.Person.PersonEditViewModel
 
 @{
     ViewBag.Title = "Person Edit";
@@ -12,9 +12,5 @@
           .Add("Edit", Url.PersonEdit(Model.Identifier))
           .Render())
 }
-
-<div class="page-header">
-    <h2>Person Edit</h2>
-</div>
 
 @Html.Partial("EditForm")

@@ -35,8 +35,10 @@
         </div>
 
         <div class="container body-content">
-            @RenderBody()
-            
+            <h2 class="page-header">@ViewBag.Title</h2>
+            <div class="panel panel-default">
+                @RenderBody()
+            </div>
         </div>
 
         <div class="navbar navbar-inverse navbar-fixed-bottom">
@@ -45,6 +47,9 @@
             </div>
         </div>
 
+        <div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        </div>
+            
         <script src="~/Scripts/jquery-1.10.2.min.js"></script>
         @Html.Raw(Bundle.JavaScript()
                         .Add("~/Scripts/bootstrap.js")

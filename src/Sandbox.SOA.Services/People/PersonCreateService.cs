@@ -12,7 +12,8 @@ namespace Sandbox.SOA.Services.People
     {
         readonly DataContext _dataContext;
 
-        public PersonCreateService(DataContext dataContext)
+        public PersonCreateService(
+            DataContext dataContext)
         {
             _dataContext = dataContext;
         }

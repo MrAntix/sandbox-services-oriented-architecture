@@ -1,4 +1,4 @@
-﻿@model Sandbox.SOA.Portal.Models.Person.PersonNameEdit
+﻿@model Sandbox.SOA.Portal.Models.Person.PersonNameEditViewModel
 
 @{ 
     Layout = "~/Views/Shared/EditorTemplates/_Layout.cshtml";
@@ -8,3 +8,5 @@
     @Html.TextBoxFor(m=>m.First, new {placeholder="First", @class="form-control"})
     @Html.TextBoxFor(m=>m.Last, new {placeholder="Last", @class="form-control"})
 </div>
+@Html.ValidationMessageFor(m=>m.First)
+@Html.ValidationMessageFor(m=>m.Last)

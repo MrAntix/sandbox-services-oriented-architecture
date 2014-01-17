@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Web.Http;
 
 using Antix;
 
@@ -14,14 +16,14 @@ using Sandbox.SOA.Common.Services;
 
 namespace Sandbox.SOA.Portal
 {
-    public class WebApiClientCommandHandler : ICommandHandler
+    public class ClientCommandHandler : ICommandHandler
     {
         readonly Uri _baseAddress;
 
         readonly IDictionary<Type, Func<HttpClient, object, Task<HttpResponseMessage>>> _routes
             = new Dictionary<Type, Func<HttpClient, object, Task<HttpResponseMessage>>>();
 
-        public WebApiClientCommandHandler(string baseAddressString)
+        public ClientCommandHandler(string baseAddressString)
         {
             _baseAddress = new Uri(baseAddressString);
         }
@@ -40,30 +42,38 @@ namespace Sandbox.SOA.Portal
             var call = _routes[typeof (Tuple<TIn, TOut>)];
 
             var response = call(client, model).Result;
+            response.EnsureSuccessStatusCode();
 
             var result = response.Content.ReadAsAsync<TOut>().Result;
 
             return result;
         }
 
-        public WebApiClientCommandHandler Get<TIn, TOut>(string urlTemplate)
+        public ClientCommandHandler Get<TIn, TOut>(string urlTemplate)
         {
             _routes.Add(typeof(Tuple<TIn, TOut>),
                         (c, m) => c.GetAsync(MergeAndQueryUrl(m, urlTemplate)));
             return this;
         }
 
-        public WebApiClientCommandHandler Post<TIn, TOut>(string urlTemplate)
+        public ClientCommandHandler Post<TIn, TOut>(string urlTemplate)
         {
             _routes.Add(typeof(Tuple<TIn, TOut>),
                         (c, m) => c.PostAsJsonAsync(MergeUrl(m, urlTemplate), m));
             return this;
         }
 
-        public WebApiClientCommandHandler Put<TIn>(string urlTemplate)
+        public ClientCommandHandler Put<TIn>(string urlTemplate)
         {
             _routes.Add(typeof(TIn),
                         (c, m) => c.PutAsJsonAsync(MergeUrl(m, urlTemplate), m));
+            return this;
+        }
+
+        public ClientCommandHandler Delete<TIn>(string urlTemplate)
+        {
+            _routes.Add(typeof (TIn),
+                        (c, m) => c.DeleteAsync(MergeUrl(m, urlTemplate)));
             return this;
         }
 

@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FluentValidation">
+      <HintPath>..\packages\FluentValidation.5.0.0.1\lib\Net40\FluentValidation.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -78,10 +81,15 @@
     <Compile Include="Services\ICommandHandler.cs" />
     <Compile Include="Services\Models\SearchCriteria.cs" />
     <Compile Include="Services\Models\SearchResult.cs" />
+    <Compile Include="Validation\People\PersonInfoValidator.cs" />
+    <Compile Include="Validation\ValidationFailure.cs" />
+    <Compile Include="Validation\IValidationHandler.cs" />
+    <Compile Include="Validation\CommonValidationHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

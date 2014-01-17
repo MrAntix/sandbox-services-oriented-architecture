@@ -2,8 +2,10 @@
     "use strict";
 
     $.fn.phone = function () {
-        var $this = $(this),
-            $prefix = $this.find("select"),
+        var $this = $(this);
+        if (!$this.length) return;
+
+        var $prefix = $this.find("select"),
             $number = $this.find("input"),
             $dropdownValue = $("<span class='value'></span>").css("paddingRight",".5em"),
             $dropdownButton = $("<span class='input-group-addon dropdown-toggle' data-toggle='dropdown'/>")

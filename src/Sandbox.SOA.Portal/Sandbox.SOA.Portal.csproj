@@ -50,6 +50,12 @@
     <Reference Include="EcmaScript.NET">
       <HintPath>..\packages\YUICompressor.NET.2.0.0.0\lib\NET20\EcmaScript.NET.dll</HintPath>
     </Reference>
+    <Reference Include="FluentValidation">
+      <HintPath>..\packages\FluentValidation.5.0.0.1\lib\Net40\FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation.Mvc">
+      <HintPath>..\packages\FluentValidation.MVC5.5.0.0.1\lib\Net45\FluentValidation.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="Iesi.Collections">
       <HintPath>..\packages\YUICompressor.NET.2.0.0.0\lib\NET20\Iesi.Collections.dll</HintPath>
     </Reference>
@@ -78,6 +84,10 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Sandbox.SOA.Services.Api\bin\System.Web.Http.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Optimization">
       <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.2\lib\net40\System.Web.Optimization.dll</HintPath>
     </Reference>
@@ -456,7 +466,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\UrlExtensions.cs" />
     <Compile Include="App_Start\ViewDataDictionaryExtensions.cs" />
-    <Compile Include="App_Start\WebApiClientCommandHandler.cs" />
+    <Compile Include="App_Start\ClientCommandHandler.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PersonAddressesController.cs" />
     <Compile Include="Controllers\PeopleController.cs" />
@@ -464,11 +474,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Person\DropdownList.cs" />
-    <Compile Include="Models\Person\PersonGrid.cs" />
-    <Compile Include="Models\Person\PersonNameEdit.cs" />
-    <Compile Include="Models\Person\PersonRow.cs" />
-    <Compile Include="Models\Person\PersonEdit.cs" />
-    <Compile Include="Models\Person\PersonMobilePhoneEdit.cs" />
+    <Compile Include="Models\Person\PersonCreateViewModel.cs" />
+    <Compile Include="Models\Person\PersonDeleteViewModel.cs" />
+    <Compile Include="Models\Person\PersonGridViewModel.cs" />
+    <Compile Include="Models\Person\PersonNameEditViewModel.cs" />
+    <Compile Include="Models\Person\PersonRowViewModel.cs" />
+    <Compile Include="Models\Person\PersonEditViewModel.cs" />
+    <Compile Include="Models\Person\PersonMobilePhoneEditViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -482,18 +494,25 @@
     <Content Include="Views\Shared\DisplayTemplates\Object.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Object.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\SearchCriteria.cshtml" />
-    <Content Include="Views\People\EditorTemplates\PersonGrid.cshtml" />
-    <Content Include="Views\People\EditorTemplates\PersonRow.cshtml" />
+    <Content Include="Views\People\EditorTemplates\PersonGridViewModel.cshtml" />
+    <Content Include="Views\People\EditorTemplates\PersonRowViewModel.cshtml" />
     <Content Include="Views\People\IndexForm.cshtml" />
     <Content Include="Views\People\Edit.cshtml" />
     <Content Include="Views\People\EditForm.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\People\EditorTemplates\PersonNameEdit.cshtml" />
+    <Content Include="Views\People\EditorTemplates\PersonNameEditViewModel.cshtml" />
     <Content Include="Views\Shared\Breadcrumbs.cshtml" />
-    <Content Include="Views\People\EditorTemplates\PersonMobilePhoneEdit.cshtml" />
+    <Content Include="Views\People\EditorTemplates\PersonMobilePhoneEditViewModel.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\_Layout.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DropdownList.cshtml" />
+    <Content Include="Views\People\CreateForm.cshtml" />
+    <Content Include="Views\People\Create.cshtml" />
+    <Content Include="Views\People\Delete.cshtml" />
+    <Content Include="Views\People\DeleteForm.cshtml" />
+    <Content Include="Views\People\DisplayTemplates\PersonNameEditViewModel.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\_Layout.cshtml" />
+    <Content Include="Views\Shared\_LayoutModal.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

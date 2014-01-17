@@ -23,7 +23,6 @@ namespace Sandbox.SOA.Services.Api
         public TOut Handle<TIn, TOut>(TIn model)
         {
             var service = _container.Resolve<ICommand<TIn, TOut>>();
-
             return service.Execute(model);
         }
     }

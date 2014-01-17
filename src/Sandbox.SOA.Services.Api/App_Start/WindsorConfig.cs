@@ -1,10 +1,15 @@
 ﻿using System.Web.Http;
+using System.Web.Http.Controllers;
 using System.Web.Http.Dispatcher;
+using System.Web.Http.Validation;
 
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 
+using FluentValidation;
+
 using Sandbox.SOA.Common.Services;
+using Sandbox.SOA.Common.Validation;
 using Sandbox.SOA.Services.Data;
 using Sandbox.SOA.Services.People;
 
@@ -19,6 +24,16 @@ namespace Sandbox.SOA.Services.Api
                 Classes.FromAssembly(typeof (PersonGetService).Assembly)
                        .Where(t => (typeof (ICommand).IsAssignableFrom(t)))
                        .WithServiceAllInterfaces()
+                );
+
+            container.Register(
+                Types.FromAssemblyInThisApplication()
+                     .BasedOn(typeof (IValidator<>))
+                     .WithServiceFromInterface(typeof (IValidator<>))
+
+                //Classes.FromAssemblyContaining(typeof(PersonInfoValidator))
+                //       .InSameNamespaceAs<PersonInfoValidator>()
+                //       .WithServiceAllInterfaces()
                 );
 
             container.Register(
@@ -39,7 +54,18 @@ namespace Sandbox.SOA.Services.Api
 
             configuration.Services.Replace(
                 typeof (IHttpControllerActivator),
-                new WindsorHttpControllerActivator(container)
+                new WebApiHttpControllerActivator(
+                    t => (IHttpController) container.Resolve(t),
+                    container.Release)
+                );
+
+            configuration.Services.Replace(
+                typeof (ModelValidatorProvider),
+                new WebApiModelValidatorProvider(
+                    new CommonValidationHandler(
+                        t => container.Kernel.HasComponent(t)
+                                 ? (IValidator) container.Resolve(t)
+                                 : null))
                 );
         }
     }

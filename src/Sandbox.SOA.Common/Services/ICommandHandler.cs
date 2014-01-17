@@ -2,7 +2,7 @@
 {
     public interface ICommandHandler
     {
-        void Handle<T>(T model);
+        void Handle<TIn>(TIn model);
         TOut Handle<TIn, TOut>(TIn model);
     }
 }

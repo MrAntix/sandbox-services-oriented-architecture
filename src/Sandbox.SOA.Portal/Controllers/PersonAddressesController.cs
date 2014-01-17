@@ -19,7 +19,7 @@ namespace Sandbox.SOA.Portal.Controllers
         }
 
         public PersonAddressesController() :
-            this(new WebApiClientCommandHandler("http://localhost:60746/")
+            this(new ClientCommandHandler("http://localhost:60746/")
                      .Get<PersonAddressSearchCriteria, PersonAddressSearchResult>("people/{person.identifier}/addresses"))
         {
         }

@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Controllers;
+using System.Web.Http.Filters;
 using System.Web.Http.Routing;
 
 namespace Sandbox.SOA.Services.Api
@@ -10,25 +13,14 @@ namespace Sandbox.SOA.Services.Api
     {
         public static void Register(HttpConfiguration config)
         {
-            // Web API configuration and services
-            var formatters = GlobalConfiguration.Configuration.Formatters;
+            var formatters = config.Formatters;
             formatters.Remove(formatters.XmlFormatter);
 
             // Web API routes
             config.MapHttpAttributeRoutes();
 
-            //config.Routes.MapHttpRoute(
-            //    name: "DefaultApi",
-            //    routeTemplate: "{controller}/{identifier}",
-            //    defaults: new { },
-            //    constraints: new { identifier = new GuidConstraint() }
-            //    );
-
-            //config.Routes.MapHttpRoute(
-            //    name: "DefaultApiSearch",
-            //    routeTemplate: "{controller}/search",
-            //    defaults: new {action = "Search"}
-            //    );
+            // filters
+            config.Filters.Add(new ValidationExceptionFilter());
         }
 
         class GuidConstraint : IHttpRouteConstraint
@@ -50,6 +42,17 @@ namespace Sandbox.SOA.Services.Api
                 }
 
                 return false;
+            }
+        }
+
+        class ValidationExceptionFilter : ActionFilterAttribute
+        {
+            public override void OnActionExecuting(HttpActionContext context)
+            {
+                if (!context.ModelState.IsValid)
+                    context.Response = context.Request
+                                              .CreateErrorResponse(
+                                                  HttpStatusCode.BadRequest, context.ModelState);
             }
         }
     }
