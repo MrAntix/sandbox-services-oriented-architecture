@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
 
-namespace Sandbox.SOA.Portal
+namespace Sandbox.SOA.Portal.Helpers
 {
     public static class ViewDataDictionaryExtensions
     {

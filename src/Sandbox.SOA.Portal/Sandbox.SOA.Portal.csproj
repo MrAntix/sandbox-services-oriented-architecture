@@ -47,6 +47,12 @@
     <Reference Include="Antlr3.Runtime">
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="Castle.Core">
+      <HintPath>..\packages\Castle.Core.3.2.2\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Windsor">
+      <HintPath>..\packages\Castle.Windsor.3.2.1\lib\net45\Castle.Windsor.dll</HintPath>
+    </Reference>
     <Reference Include="EcmaScript.NET">
       <HintPath>..\packages\YUICompressor.NET.2.0.0.0\lib\NET20\EcmaScript.NET.dll</HintPath>
     </Reference>
@@ -463,13 +469,17 @@
     <Compile Include="App_Start\ActionHandler.cs" />
     <Compile Include="App_Start\ActionResultBuilder.cs" />
     <Compile Include="App_Start\BreadcrumbHelper.cs" />
+    <Compile Include="App_Start\Filters\AjaxValidationFilter.cs" />
+    <Compile Include="App_Start\Validation\FluentValidationValidatorFactory.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\UrlExtensions.cs" />
-    <Compile Include="App_Start\ViewDataDictionaryExtensions.cs" />
+    <Compile Include="App_Start\Helpers\UrlExtensions.cs" />
+    <Compile Include="App_Start\Helpers\ViewDataDictionaryExtensions.cs" />
     <Compile Include="App_Start\ClientCommandHandler.cs" />
+    <Compile Include="App_Start\WindsorConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PersonAddressesController.cs" />
     <Compile Include="Controllers\PeopleController.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

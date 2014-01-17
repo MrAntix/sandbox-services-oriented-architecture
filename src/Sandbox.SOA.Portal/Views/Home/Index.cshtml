@@ -1,4 +1,5 @@
-﻿
+﻿@using Sandbox.SOA.Portal.Helpers
+
 @{
     ViewBag.Title = "Index";
 }
@@ -10,4 +11,6 @@
           .Render())
 }
 
-<p><a href="@Url.People()">People</a></p>
+<div class="panel-body">
+    <p><a href="@Url.People()">People</a></p>
+</div>

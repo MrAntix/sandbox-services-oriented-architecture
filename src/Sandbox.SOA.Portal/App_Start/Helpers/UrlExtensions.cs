@@ -1,7 +1,6 @@
-﻿using System.Linq;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
-namespace Sandbox.SOA.Portal
+namespace Sandbox.SOA.Portal.Helpers
 {
     public static class UrlExtensions
     {
