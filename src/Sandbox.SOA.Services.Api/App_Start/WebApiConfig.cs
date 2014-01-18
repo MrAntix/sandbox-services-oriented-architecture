@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 using System.Web.Http.Routing;
+
+using Sandbox.SOA.Services.Data;
+using Sandbox.SOA.Services.Migrations;
 
 namespace Sandbox.SOA.Services.Api
 {
@@ -20,7 +24,11 @@ namespace Sandbox.SOA.Services.Api
             config.MapHttpAttributeRoutes();
 
             // filters
+            config.Filters.Clear();
             config.Filters.Add(new ValidationExceptionFilter());
+
+            Database.SetInitializer(
+                new MigrateDatabaseToLatestVersion<DataContext, Configuration>());
         }
 
         class GuidConstraint : IHttpRouteConstraint

@@ -7,7 +7,7 @@ using Sandbox.SOA.Services.Data.Models;
 
 namespace Sandbox.SOA.Services.Migrations
 {
-    sealed class Configuration : DbMigrationsConfiguration<DataContext>
+   public sealed class Configuration : DbMigrationsConfiguration<DataContext>
     {
         public Configuration()
         {
