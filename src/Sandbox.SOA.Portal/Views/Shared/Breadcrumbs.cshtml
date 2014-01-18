@@ -5,7 +5,7 @@
         @foreach (var crumb in Model)
         {
             <li>
-                <a href="@crumb.Url">@crumb.Text</a>
+                <a href="@crumb.Url" class="@(crumb==Model.Last()?"active":null)">@crumb.Text</a>
             </li>
         }
     </ol>

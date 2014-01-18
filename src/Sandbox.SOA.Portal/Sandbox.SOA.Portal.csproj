@@ -394,14 +394,17 @@
     <Content Include="Content\flags\za.png" />
     <Content Include="Content\flags\zm.png" />
     <Content Include="Content\flags\zw.png" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Content\Site.css">
-      <DependentUpon>Site.less</DependentUpon>
+    <Content Include="Content\metro-bootstrap.css" />
+    <Content Include="Content\site\Main.css">
+      <DependentUpon>Main.less</DependentUpon>
     </Content>
-    <Content Include="Content\Site.min.css">
-      <DependentUpon>Site.less</DependentUpon>
+    <Content Include="Content\site\Main.min.css">
+      <DependentUpon>Main.less</DependentUpon>
     </Content>
-    <Content Include="Content\xSite.css" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
@@ -446,7 +449,20 @@
     <Content Include="Content\bootstrap\bootstrap.less" />
     <Content Include="Content\bootstrap\badges.less" />
     <Content Include="Content\bootstrap\alerts.less" />
-    <Content Include="Content\Site.less" />
+    <Content Include="Content\site\Main.less" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="Content\metro-bootstrap\variables.less" />
+    <Content Include="Content\metro-bootstrap\tiles.less" />
+    <Content Include="Content\metro-bootstrap\radio.less" />
+    <Content Include="Content\metro-bootstrap\navbar-side.less" />
+    <Content Include="Content\metro-bootstrap\modals.less" />
+    <Content Include="Content\metro-bootstrap\metro-bootstrap.less" />
+    <Content Include="Content\metro-bootstrap\labels.less" />
+    <Content Include="Content\metro-bootstrap\checkbox.less" />
+    <Content Include="Content\metro-bootstrap\alerts.less" />
     <None Include="Properties\PublishProfiles\Richmond.pubxml" />
     <Content Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

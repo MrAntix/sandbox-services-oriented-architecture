@@ -8,9 +8,9 @@
         <title>@ViewBag.Title - SOA with MVC 5 and WebApi 2</title>
 
         @Html.Raw(Bundle.Css()
-                        .Add("~/Content/Site.css")
+                        .Add("~/Content/Site/Main.css")
                       //.AddDirectory("~/Content/bootstrap/bootstrap-addons/")
-                        .Render("~/content/styles-#.css")
+                        .Render("~/content/site/#.css")
              )
  
         <script src="~/Scripts/modernizr-2.6.2.js"></script>
@@ -25,7 +25,8 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        @Html.ActionLink("SOA MVC5/WebApi2", "Index", "Home", null, new {@class = "navbar-brand"})
+                        
+                        <a class="navbar-brand" href="@Url.Home()">SOA</a>
                     </div>
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
@@ -42,16 +43,10 @@
 
             <div class="container body-content">
                 <div class="page-header">
-                    <h4>@ViewBag.Title</h4>
+                    <h1>@ViewBag.Title</h1>
                 </div>
                 <div class="panel panel-default">
                     @RenderBody()
-                </div>
-            </div>
-
-            <div class="navbar navbar-inverse navbar-fixed-bottom">
-                <div class="container">
-                    <p>&copy; @DateTime.Now.Year - SOA with MVC 5 and WebApi 2</p>
                 </div>
             </div>
         </div>

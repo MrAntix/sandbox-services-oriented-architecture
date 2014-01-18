@@ -1,12 +1,12 @@
-﻿@import url("bootstrap/bootstrap.less");
+﻿@import url("../metro-bootstrap/metro-bootstrap.less");
 
 body>div.page {
     padding-top: 60px;
     padding-bottom: 40px;
 }
 
-button{
-    .btn;
+.page-header{
+    margin-top:-10px;
 }
 
 input,textarea,select{
@@ -34,4 +34,11 @@ input,textarea,select{
 }
 .has-error.form-control{
     border-color:@state-danger-text;
+}
+
+.breadcrumb a[href='/']{
+    .glyphicon;
+    .glyphicon-home;
+    width:1em;
+    overflow:hidden
 }
