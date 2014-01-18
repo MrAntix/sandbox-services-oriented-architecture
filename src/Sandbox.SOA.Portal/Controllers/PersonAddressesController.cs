@@ -3,6 +3,7 @@ using System.Web.Mvc;
 
 using Sandbox.SOA.Common.Contracts.People.Addresses;
 using Sandbox.SOA.Common.Services;
+using Sandbox.SOA.Portal.Properties;
 
 namespace Sandbox.SOA.Portal.Controllers
 {
@@ -19,7 +20,7 @@ namespace Sandbox.SOA.Portal.Controllers
         }
 
         public PersonAddressesController() :
-            this(new ClientCommandHandler("http://localhost:60746/")
+            this(new ClientCommandHandler(Settings.Default.ServicesApiUrl)
                      .Get<PersonAddressSearchCriteria, PersonAddressSearchResult>("people/{person.identifier}/addresses"))
         {
         }

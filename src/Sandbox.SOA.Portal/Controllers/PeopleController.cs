@@ -4,6 +4,7 @@ using Antix.Data.Static;
 using Sandbox.SOA.Common.Contracts.People;
 using Sandbox.SOA.Common.Services;
 using Sandbox.SOA.Portal.Models.Person;
+using Sandbox.SOA.Portal.Properties;
 
 namespace Sandbox.SOA.Portal.Controllers
 {
@@ -20,7 +21,7 @@ namespace Sandbox.SOA.Portal.Controllers
         }
 
         public PeopleController() :
-            this(new ClientCommandHandler("http://localhost:60746/")
+            this(new ClientCommandHandler(Settings.Default.ServicesApiUrl)
                      .Get<PersonSearchCriteria, PersonGridViewModel>("people")
                      .Get<PersonIdentifier, PersonEditViewModel>("people/{identifier}")
                      .Get<PersonIdentifier, PersonDeleteViewModel>("people/{identifier}")

@@ -26,21 +26,21 @@ namespace Sandbox.SOA.Portal.Filters
                     ContentType = "application/json"
                 };
 
+            filterContext.HttpContext.Response.TrySkipIisCustomErrors = true;
             filterContext.HttpContext.Response.StatusCode = 400;
             filterContext.Result = result;
         }
 
         void IActionFilter.OnActionExecuted(ActionExecutedContext filterContext)
         {
-            
             if (!filterContext.HttpContext.Request.IsAjaxRequest()) return;
 
             var redirect = filterContext.Result as RedirectToRouteResult;
-            if(redirect==null) return;
+            if (redirect == null) return;
 
             var urlHelper = new UrlHelper(filterContext.RequestContext);
             var url = urlHelper.RouteUrl(redirect.RouteName, redirect.RouteValues);
-            
+
             filterContext.HttpContext.Response.Headers.Add("redirect", url);
             filterContext.Result = new EmptyResult();
         }

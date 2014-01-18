@@ -394,7 +394,6 @@
     <Content Include="Content\flags\za.png" />
     <Content Include="Content\flags\zm.png" />
     <Content Include="Content\flags\zw.png" />
-    <Content Include="Content\flags\zz.png" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\Site.css">
       <DependentUpon>Site.less</DependentUpon>
@@ -448,7 +447,13 @@
     <Content Include="Content\bootstrap\badges.less" />
     <Content Include="Content\bootstrap\alerts.less" />
     <Content Include="Content\Site.less" />
+    <None Include="Properties\PublishProfiles\Richmond.pubxml" />
+    <Content Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </Content>
     <None Include="Scripts\jquery-1.10.2-vsdoc.js" />
+    <Content Include="Scripts\bootstrap-addons\placeholder.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\form\form.js" />
@@ -463,7 +468,9 @@
     <Content Include="Scripts\less-1.5.1.js" />
     <Content Include="Scripts\less-1.5.1.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\ActionHandler.cs" />
@@ -492,6 +499,11 @@
     <Compile Include="Models\Person\PersonEditViewModel.cs" />
     <Compile Include="Models\Person\PersonMobilePhoneEditViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -533,7 +545,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\bootstrap\bootstrap-addons\" />
-    <Folder Include="Scripts\bootstrap-addons\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Sandbox.SOA.Common\Sandbox.SOA.Common.csproj">
