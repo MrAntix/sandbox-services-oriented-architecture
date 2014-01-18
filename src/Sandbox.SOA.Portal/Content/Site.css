@@ -5955,8 +5955,9 @@ td.visible-print {
     display: none !important;
   }
 }
-body {
-  padding-top: 100px;
+body > div.page {
+  padding-top: 60px;
+  padding-bottom: 40px;
 }
 button {
   display: inline-block;
@@ -6019,4 +6020,14 @@ select {
 }
 .person-name input.form-control:first-child {
   border-right: none;
+}
+.popover-invalid {
+  background-color: #f2dede;
+  color: #a94442;
+}
+.popover-invalid.top .arrow:after {
+  border-top-color: #f2dede;
+}
+.has-error.form-control {
+  border-color: #a94442;
 }

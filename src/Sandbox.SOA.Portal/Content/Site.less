@@ -1,7 +1,8 @@
 ﻿@import url("bootstrap/bootstrap.less");
 
-body {
-    padding-top: 100px;
+body>div.page {
+    padding-top: 60px;
+    padding-bottom: 40px;
 }
 
 button{
@@ -21,4 +22,16 @@ input,textarea,select{
 }
 .person-name input.form-control:first-child{
     border-right:none;
+}
+
+.popover-invalid{
+    background-color:@alert-danger-bg;
+    color:@alert-danger-text;
+}
+
+.popover-invalid.top .arrow:after{
+    border-top-color:@alert-danger-bg;
+}
+.has-error.form-control{
+    border-color:@state-danger-text;
 }

@@ -1,4 +1,5 @@
-﻿@using SquishIt.Framework
+﻿@using Sandbox.SOA.Portal.Helpers
+@using SquishIt.Framework
 <!DOCTYPE html>
 <html>
     <head>
@@ -8,42 +9,50 @@
 
         @Html.Raw(Bundle.Css()
                         .Add("~/Content/Site.css")
-                        .AddDirectory("~/Content/bootstrap/bootstrap-addons/")
-                        .Render("~/assets/styles=#.js")
+                      //.AddDirectory("~/Content/bootstrap/bootstrap-addons/")
+                        .Render("~/content/styles-#.css")
              )
  
         <script src="~/Scripts/modernizr-2.6.2.js"></script>
     </head>
     <body>
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    @Html.ActionLink("SOA with MVC 5 and WebApi 2", "Index", "Home", null, new {@class = "navbar-brand"})
+        <div class="page">
+            <div class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        @Html.ActionLink("SOA MVC5/WebApi2", "Index", "Home", null, new {@class = "navbar-brand"})
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li><a href="@Url.Home()">Home</a></li>
+                            <li><a href="@Url.People()">People</a></li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                    </ul>
-                </div>
+            </div>
 
+            <div class="container">
                 @RenderSection("breadcrumb", false)
             </div>
-        </div>
 
-        <div class="container body-content">
-            <h2 class="page-header">@ViewBag.Title</h2>
-            <div class="panel panel-default">
-                @RenderBody()
+            <div class="container body-content">
+                <div class="page-header">
+                    <h4>@ViewBag.Title</h4>
+                </div>
+                <div class="panel panel-default">
+                    @RenderBody()
+                </div>
             </div>
-        </div>
 
-        <div class="navbar navbar-inverse navbar-fixed-bottom">
-            <div class="container">
-                <p>&copy; @DateTime.Now.Year - SOA with MVC 5 and WebApi 2</p>
+            <div class="navbar navbar-inverse navbar-fixed-bottom">
+                <div class="container">
+                    <p>&copy; @DateTime.Now.Year - SOA with MVC 5 and WebApi 2</p>
+                </div>
             </div>
         </div>
 
@@ -53,9 +62,9 @@
         <script src="~/Scripts/jquery-1.10.2.min.js"></script>
         @Html.Raw(Bundle.JavaScript()
                         .Add("~/Scripts/bootstrap.js")
-                        .AddDirectory("~/Scripts/bootstrap-addons/")
+                      //.AddDirectory("~/Scripts/bootstrap-addons/")
                         .AddDirectory("~/Scripts/form/")
-                        .Render("~/assets/scripts=#.js")
+                        .Render("~/content/scripts-#.js")
              )
     </body>
 </html>

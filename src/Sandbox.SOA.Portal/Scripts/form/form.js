@@ -10,45 +10,54 @@
         $("body").on(
             "submit", "form[method='POST']",
             function() {
-                
+
                 var $form = $(this),
                     data = $form.serialize();
 
-                var request = $.ajax({
+                $.ajax({
                     url: $form.attr("action"),
                     type: $form.attr("method"),
                     data: data
-                });
+                })
 
-                request.fail(function(xhr) {
-                    var response;
-                    
-                    $form.find(".form-group").removeClass(invalid);
+                    .fail(function (xhr) {
+                        var response;
 
-if (xhr.status === 400) {
-                        response = JSON.parse(xhr.responseText);
-                        var fields = Object.keys(response);
+                        $form
+                            .find(":input")
+                            .popover("destroy")
+                            .removeClass(invalid);
 
-                        fields.forEach(function(field) {
-                            if (response[field].Errors && response[field].Errors.length > 0) {
-                                $form.find("[name='" + field + "']")
-                                    .parents('.form-group')
-                                    .addClass(invalid);
-                            }
-                        });
-                    }
-                });
+                        if (xhr.status === 400) {
+                            response = JSON.parse(xhr.responseText);
+                            var fields = Object.keys(response);
 
-                request.success(function(data, status, xhr) {
-                    var redirect = xhr.getResponseHeader("redirect");
-                    if (redirect) {
-                        window.location.href = redirect;
-                        
-                        return;
-                    }
+                            fields.forEach(function(field) {
+                                if (response[field].Errors && response[field].Errors.length > 0) {
+                                    $form
+                                        .find("[name='" + field + "']")
+                                        .popover({
+                                            content: response[field].Errors[0].ErrorMessage,
+                                            trigger:"focus",
+                                            placement: "auto top",
+                                            template: "<div class='popover popover-invalid'><div class='arrow'></div><h3 class='popover-title'></h3><div class='popover-content'></div></div>",
+                                            container: $form
+                                        })
+                                        .addClass(invalid);
+                                }
+                            });
+                        }
+                    })
+                    .done(function(response, status, xhr) {
+                        var redirect = xhr.getResponseHeader("redirect");
+                        if (redirect) {
+                            window.location.href = redirect;
 
-                    $form.find("." + invalid).removeClass('invalid');
-                });
+                            return;
+                        }
+
+                        $form.find("." + invalid).removeClass('invalid');
+                    });
 
                 return false;
 
