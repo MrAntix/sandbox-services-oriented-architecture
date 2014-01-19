@@ -4,8 +4,8 @@ sandbox-services-oriented-architecture
 SOA with Web API 2 and MVC5
 
 
-light weight client MVC5 
-------------------------
+light weight client MVC5 and Bootstrap 3
+----------------------------------------
 
 http://soa.antix.co.uk
 
