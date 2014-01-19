@@ -32,18 +32,32 @@
                             response = JSON.parse(xhr.responseText);
                             var fields = Object.keys(response);
 
+                            $form.find(".validation-summary")
+                                .addClass("alert alert-danger")
+                                .empty();
+
                             fields.forEach(function(field) {
                                 if (response[field].Errors && response[field].Errors.length > 0) {
-                                    $form
-                                        .find("[name='" + field + "']")
+                                    var message = response[field].Errors[0].ErrorMessage,
+                                        $field = $form
+                                            .find("[name='" + field + "']");
+
+                                    $field
                                         .popover({
-                                            content: response[field].Errors[0].ErrorMessage,
+                                            content: message,
                                             trigger:"focus",
                                             placement: "auto top",
                                             template: "<div class='popover popover-invalid'><div class='arrow'></div><h3 class='popover-title'></h3><div class='popover-content'></div></div>",
                                             container: $form
                                         })
                                         .addClass(invalid);
+
+                                    var $label = $("<label/>")
+                                        .attr("for", $field.attr("id"))
+                                        .text(message);
+
+                                    $form.find(".validation-summary")
+                                        .append($("<p class='col-sm-offset-2 col-sm-10'/>").append($label));
                                 }
                             });
                         }
