@@ -973,7 +973,10 @@ if (typeof jQuery === "undefined") { throw new Error("Bootstrap requires jQuery"
     this.backdrop(function () {
       that.removeBackdrop()
       that.$element.trigger('hidden.bs.modal')
-      if (that.options.cache === false) that.$element.removeData("bs.modal")
+      if (that.options.cache === false) {
+        that.$element.removeData("bs.modal")
+        that.$element.empty()
+      }
     })
   }
 

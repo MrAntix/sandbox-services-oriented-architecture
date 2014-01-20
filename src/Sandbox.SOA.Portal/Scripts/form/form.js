@@ -4,8 +4,9 @@
 
     var invalid = "has-error";
 
-    $(function() {
-        $(".phone").phone();
+    $(function () {
+
+        $("[type='tel']").tel();
 
         $("body").on(
             "submit", "form[method='POST']",
