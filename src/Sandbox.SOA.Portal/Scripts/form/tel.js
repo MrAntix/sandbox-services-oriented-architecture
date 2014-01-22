@@ -9,7 +9,7 @@
         var that = this;
 
         this.options = options;
-        this.prefixes = options.getPrefixes();
+        this.prefixes = {};
         this.$element = $(element);
         this.$button = $('<button class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="caret" /></button>');
 
@@ -18,29 +18,33 @@
                 .append(this.$button)
                 .append($list);
 
-        for (var key in this.prefixes) {
-            var prefix = this.prefixes[key],
+        for (var i = 0; i < this.options.prefixes.length;i++) {
+            var prefix = this.options.prefixes[i],
                 $option = $('<a href="#"/>')
                     .append(
                         $('<span/>').text(prefix.display)
                             .css({
                                 paddingLeft: '30px',
-                                background: getBackground(prefix.value),
+                                background: this.options.getButtonBackground(prefix.iso),
                                 backgroundPosition: 'left center'
                             })
                     )
-                    .data('key', key)
-                    .on('click.bs.tel', function() { that.select($(this).data('key')); });
+                    .data('code', prefix.code)
+                    .on('click.bs.tel', function () { that.select($(this).data('code')); });
 
             $list.append(
                 $('<li/>').append($option)
             );
+
+            this.prefixes[prefix.code] = prefix;
         }
 
         this.$element
             .wrap('<div class="input-group"/>')
             .before($toggle)
-            .on("change.bs.tel keyup.bs.tel", function() {
+            .on("change.bs.tel keyup.bs.tel", function(e) {
+                if ($.inArray(e.keyCode,[8, 46])!=-1) return;
+
                 that.set(that.$element.val());
             });
 
@@ -48,16 +52,16 @@
 
     };
 
-    Tel.prototype.select = function(key) {
-        /// <summary>Select a prefix given the key</summary>
-        var prefix = this.prefixes[key];
-        this.$button.css(getButtonCss(prefix));
+    Tel.prototype.select = function(code) {
+        /// <summary>Select a prefix given the code</summary>
+        var prefix = this.prefixes[code];
+        this.$button.css(getButtonCss(prefix, this.options));
 
         if (prefix) {
             var number = this.$element.val(),
                 match = number.match(numberMatch.regex);
 
-            this.$element.val(format(key, prefix, match));
+            setValue(this.$element, format(code, prefix, match));
         }
     };
 
@@ -67,24 +71,19 @@
             prefix = null;
 
         if (match && match[numberMatch.country]) {
-            var key = match[numberMatch.country];
-            prefix = this.prefixes[key];
+            var code = match[numberMatch.country];
+            prefix = this.prefixes[code];
 
-            this.$element.val(format(key, prefix, match));
+            setValue(this.$element, format(code, prefix, match));
         }
 
-        this.$button.css(getButtonCss(prefix));
+        this.$button.css(getButtonCss(prefix, this.options));
     };
 
     Tel.DEFAULTS = {
-        getPrefixes: function() {
-            return {
-                '45': { value: 'DK', display: 'Denmark +45', ndd: '' },
-                '33': { value: 'FR', display: 'France +33', ndd: '0' },
-                '49': { value: 'DE', display: 'Germany +49', ndd: '0' },
-                '44': { value: 'GB', display: 'United Kingdom +44', ndd: '0' },
-                '1': { value: 'US', display: 'United States +1', ndd: '0' }
-            };
+        prefixes: {},
+        getButtonBackground: function (iso) {
+            return iso ? "url('/Content/flags/" + iso + ".png') no-repeat" : "";
         }
     };
 
@@ -123,15 +122,11 @@
         local: 5
     };
 
-    var getBackground = function(value) {
-        return value ? "url('/Content/flags/" + value + ".png') no-repeat" : "";
-    };
-
-    var getButtonCss = function(prefix) {
+    var getButtonCss = function(prefix, options) {
         return prefix
             ? {
                 paddingLeft: '3em',
-                background: getBackground(prefix.value),
+                background: options.getButtonBackground(prefix.iso),
                 backgroundPosition: '13px center'
             } : {
                 paddingLeft: '3em',
@@ -139,9 +134,9 @@
             };
     };
 
-    var format = function(key, prefix, match) {
+    var format = function (code, prefix, match) {
 
-        var number = '+' + key;
+        var number = '+' + code;
 
         if (match) {
             var local = match[numberMatch.local],
@@ -178,4 +173,8 @@
             return ndd ? ' (' + ndd + ')' : '';
         };
 
+    var setValue = function($el, value) {
+        if ($el.val() != value) $el.val(value);
+    };
+    
 })(jQuery);

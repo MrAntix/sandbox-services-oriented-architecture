@@ -476,6 +476,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\form\form.js" />
+    <Content Include="Scripts\form\tel.prefixes.js" />
     <Content Include="Scripts\form\tel.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
