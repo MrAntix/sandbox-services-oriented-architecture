@@ -7,6 +7,7 @@
     $(function () {
 
         $("[type='tel']").tel();
+        $('select').selectpicker();
 
         $("body").on(
             "submit", "form[method='POST']",

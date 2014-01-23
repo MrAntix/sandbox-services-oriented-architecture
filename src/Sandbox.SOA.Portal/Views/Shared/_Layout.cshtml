@@ -9,11 +9,15 @@
 
         @Html.Raw(Bundle.Css()
                         .Add("~/Content/Site/Main.css")
+                        .Add("~/Content/bootstrap-select.css")
                       //.AddDirectory("~/Content/bootstrap/bootstrap-addons/")
                         .Render("~/content/site/#.css")
              )
  
-        <script src="~/Scripts/modernizr-2.6.2.js"></script>
+        @Html.Raw(Bundle.JavaScript()
+                        .Add("~/Scripts/modernizr-2.7.1.js")
+                        .Render("~/content/scripts-head-#.js")
+                        )
     </head>
     <body>
         <div class="page">
@@ -54,9 +58,10 @@
         <div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
         </div>
             
-        <script src="~/Scripts/jquery-1.10.2.min.js"></script>
         @Html.Raw(Bundle.JavaScript()
+                        .Add("~/Scripts/jquery-2.0.3.js")
                         .Add("~/Scripts/bootstrap.js")
+                        .Add("~/Scripts/bootstrap-select.js")
                       //.AddDirectory("~/Scripts/bootstrap-addons/")
                         .AddDirectory("~/Scripts/form/")
                         .Render("~/content/scripts-#.js")

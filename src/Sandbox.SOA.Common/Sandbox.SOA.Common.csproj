@@ -32,7 +32,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FluentValidation">
+    <Reference Include="FluentValidation, Version=5.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\FluentValidation.5.0.0.1\lib\Net40\FluentValidation.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -50,15 +51,10 @@
     <Compile Include="Antix\Data\Static\PhoneCountryConfiguration.cs" />
     <Compile Include="Antix\Data\Static\PhoneCountryConfigurations.cs" />
     <Compile Include="Antix\IO\IOExtensions.cs" />
-    <Compile Include="Antix\Logging\ILogAdapter.cs" />
-    <Compile Include="Antix\Logging\LoggerExtensionsDebug.cs" />
-    <Compile Include="Antix\Logging\LoggerExtensionsError.cs" />
-    <Compile Include="Antix\Logging\LoggerExtensionsFatal.cs" />
-    <Compile Include="Antix\Logging\LoggerExtensionsInformation.cs" />
-    <Compile Include="Antix\Logging\LoggerExtensionsWarning.cs" />
-    <Compile Include="Antix\Logging\LoggerHelper.cs" />
-    <Compile Include="Antix\Logging\LogLevel.cs" />
-    <Compile Include="Antix\Logging\LogMessageDelegate.cs" />
+    <Compile Include="Antix\Logging\Log.cs" />
+    <Compile Include="Antix\Logging\Log.Delegates.cs" />
+    <Compile Include="Antix\Logging\Log.Event.cs" />
+    <Compile Include="Antix\Logging\Log.Extensions.cs" />
     <Compile Include="Antix\StringExtensions.cs" />
     <Compile Include="Contracts\People\Addresses\PersonAddress.cs" />
     <Compile Include="Contracts\People\Addresses\PersonAddressDelete.cs" />
@@ -89,7 +85,9 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Antix\Data\Static\config-example.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
