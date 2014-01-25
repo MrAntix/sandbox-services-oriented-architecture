@@ -509,6 +509,7 @@
     <Compile Include="App_Start\ActionResultBuilder.cs" />
     <Compile Include="App_Start\BreadcrumbHelper.cs" />
     <Compile Include="App_Start\Filters\AjaxValidationFilter.cs" />
+    <Compile Include="App_Start\Helpers\HtmlExtensions.cs" />
     <Compile Include="App_Start\Validation\FluentValidationValidatorFactory.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Helpers\UrlExtensions.cs" />
@@ -535,6 +536,11 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\SiteResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SiteResources.resx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -582,6 +588,12 @@
       <Project>{53911B75-411C-4E05-B0C6-4D3C0F4E4108}</Project>
       <Name>Sandbox.SOA.Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\SiteResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SiteResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

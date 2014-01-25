@@ -1,7 +1,8 @@
 ﻿@using Sandbox.SOA.Portal.Helpers
+@using Sandbox.SOA.Portal.Resources
 
 @{
-    ViewBag.Title = "Service Oriented Architechture (SOA)";
+    ViewBag.Title = "Home";
 }
 
 @section breadcrumb{
@@ -13,7 +14,7 @@
 
 
 <div class="panel-body">
-    <p>This site is an example of a Service Oriented Architecture</p>
+    <p>@SiteResources.Tag</p>
     <p>Its built using the following components</p>
     <ol>
         <li>ASP.NET WebApi 2</li>
