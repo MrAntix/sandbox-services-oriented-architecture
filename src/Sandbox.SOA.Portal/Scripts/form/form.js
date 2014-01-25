@@ -9,6 +9,11 @@
         $("[type='tel']").tel();
         $('select').selectpicker();
 
+        //alert($.fn.tel.format("44 07899 793042"));
+        //alert($.fn.tel.format("[gb]44 07899 793042"));
+        //alert($.fn.tel.format("[gb]44"));
+        //alert($.fn.tel.format("[dk]44 (0)7899 793042"));
+
         $("body").on(
             "submit", "form[method='POST']",
             function() {

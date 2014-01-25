@@ -11,79 +11,81 @@
         this.options = options;
         this.prefixes = {};
         this.$element = $(element);
+        this.$number = $('<input type="tel" class="form-control" />').data('bs.tel', this);
         this.$button = $('<button class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="caret" /></button>');
 
-        var $list = $('<ul class="dropdown-menu"/>'),
+        var $list = $('<ul class="dropdown-menu"/>').css({ maxHeight: "250px", overflowY: "scroll" }),
             $toggle = $('<div class="input-group-btn"/>')
                 .append(this.$button)
                 .append($list);
 
-        for (var i = 0; i < this.options.prefixes.length;i++) {
+        for (var i = 0; i < this.options.prefixes.length; i++) {
             var prefix = this.options.prefixes[i],
                 $option = $('<a href="#"/>')
                     .append(
                         $('<span/>').text(prefix.display)
                             .css({
                                 paddingLeft: '30px',
-                                background: this.options.getButtonBackground(prefix.iso),
+                                background: this.options.getButtonBackground(prefix.country),
                                 backgroundPosition: 'left center'
                             })
                     )
-                    .data('code', prefix.code)
-                    .on('click.bs.tel', function () { that.select($(this).data('code')); });
+                    .data('country', prefix.country)
+                    .on('click.bs.tel', function () { that.setCountry($(this).data('country')); });
 
             $list.append(
                 $('<li/>').append($option)
             );
 
-            this.prefixes[prefix.code] = prefix;
+            this.prefixes[prefix.country.toUpperCase()] = prefix;
         }
 
         this.$element
             .wrap('<div class="input-group"/>')
             .before($toggle)
-            .on("change.bs.tel keyup.bs.tel", function(e) {
-                if ($.inArray(e.keyCode,[8, 46])!=-1) return;
+            .after(this.$number
+                .on("change.bs.tel", function(e) {
+                    if ($.inArray(e.keyCode, [8, 46]) != -1) return;
 
-                that.set(that.$element.val());
-            });
+                    that.setNumber(that.$number.val());
+                })
+            )
+            .hide();
 
-        this.set(this.$element.val());
+        this.setNumber(this.$element.val());
 
     };
 
-    Tel.prototype.select = function(code) {
-        /// <summary>Select a prefix given the code</summary>
-        var prefix = this.prefixes[code];
-        this.$button.css(getButtonCss(prefix, this.options));
+    Tel.prototype.setCountry = function(country) {
 
-        if (prefix) {
-            var number = this.$element.val(),
-                match = number.match(numberMatch.regex);
-
-            setValue(this.$element, format(code, prefix, match));
-        }
+        this.set(country, this.number);
+        this.$button.css(getButtonCss(this.country, this.options));
     };
 
-    Tel.prototype.set = function(number) {
-        /// <summary>Set the number on the control, select and format where matched</summary>
-        var match = number.match(numberMatch.regex),
-            prefix = null;
+    Tel.prototype.setNumber = function(number) {
 
-        if (match && match[numberMatch.country]) {
-            var code = match[numberMatch.country];
-            prefix = this.prefixes[code];
+        this.set(this.country, number);
+        this.$button.css(getButtonCss(this.country, this.options));
+    };
 
-            setValue(this.$element, format(code, prefix, match));
-        }
+    Tel.prototype.set = function(country, number) {
 
-        this.$button.css(getButtonCss(prefix, this.options));
+        var tel = parse(formatCountry(country) + number, this.options.prefixes);
+        this.$element.val(format(tel));
+
+        this.country = tel.country;
+
+        tel.country = null;
+        this.number = format(tel);
+
+        if (this.$number.val() != this.number)
+            this.$number.val(this.number);
     };
 
     Tel.DEFAULTS = {
         prefixes: {},
-        getButtonBackground: function (iso) {
-            return iso ? "url('/Content/flags/" + iso + ".png') no-repeat" : "";
+        getButtonBackground: function(country) {
+            return country ? "url('/Content/flags/" + country + ".png') no-repeat" : "";
         }
     };
 
@@ -105,6 +107,13 @@
 
     $.fn.tel.Constructor = Tel;
 
+    $.fn.tel.format = function(value, prefixes) {
+
+        var tel = parse(value, prefixes || Tel.DEFAULTS.prefixes);
+
+        return format(tel);
+    };
+
     // TEL NO CONFLICT
     // ===============
 
@@ -114,19 +123,22 @@
     };
 
     var numberMatch = {
-        regex: /^\+?(\d{1,4})\s*?(\s|\s?\((\d{1,4})\))\s*?(\s)?([\-\.\s\d]{1,15})?$/,
-        country: 1,
-        nddContainer: 2,
-        ndd: 3,
-        localSpace: 4,
-        local: 5
+        regex: /^(\[([a-zA-Z]{2})\]\s*)?\+?(\d{1,4})?\s*?(\s|\s?\((\d{0,4})\)?)?\s*?(\s)?([\-\.\s\d]{1,15})?$/,
+        country: 2,
+        code: 3,
+        nddContainer: 4,
+        ndd: 5,
+        localSpace: 6,
+        local: 7
     };
 
-    var getButtonCss = function(prefix, options) {
-        return prefix
+    var getButtonCss = function (country, options) {
+        if (!options) throw "getButtonCss(): options required";
+
+        return country
             ? {
                 paddingLeft: '3em',
-                background: options.getButtonBackground(prefix.iso),
+                background: options.getButtonBackground(country),
                 backgroundPosition: '13px center'
             } : {
                 paddingLeft: '3em',
@@ -134,47 +146,82 @@
             };
     };
 
-    var format = function (code, prefix, match) {
+    var parse = function(value, prefixes) {
+        if (value) {
+            var match = value.toUpperCase().match(numberMatch.regex);
 
-        var number = '+' + code;
+            if (match) {
 
-        if (match) {
-            var local = match[numberMatch.local],
-                ndd = match[numberMatch.ndd];
+                var country = match[numberMatch.country] || '',
+                    code = match[numberMatch.code] || '',
+                    ndd = match[numberMatch.ndd] || '',
+                    local = match[numberMatch.local] || '',
+                    prefix = prefixBy('country', country, prefixes)
+                        || prefixBy('code', code, prefixes);
 
-            if (local) {
-                if (ndd == null
-                    && local.length > prefix.ndd.length
-                    && local.substr(0, prefix.ndd.length) === prefix.ndd) {
-                    ndd = prefix.ndd;
-                    local = local.substr(ndd.length);
+                if (prefix) {
+                    country = country || prefix.country;
+                    code = prefix.code;
+
+                    if (prefix.ndd) {
+                        if (!ndd
+                            && local.length > prefix.ndd.length
+                            && local.substr(0, prefix.ndd.length) === prefix.ndd) {
+                            ndd = prefix.ndd;
+                            local = local.substr(ndd.length);
+                        }
+
+                    } else {
+                        local = ndd + local;
+                        ndd = '';
+                    }
                 }
 
-                if (prefix.ndd) {
-                    number += formatNdd(ndd);
-                } else {
-                    local = ndd + local;
-                }
-
-                number += ' ' + local;
-
-            } else {
-                if (match[numberMatch.nddContainer]) number += match[numberMatch.nddContainer];
-                number += (match[numberMatch.localSpace] || '');
-
+                return {
+                    country: country,
+                    code: code,
+                    ndd: ndd,
+                    local: local
+                };
             }
-        } else {
-            number += formatNdd(prefix.ndd);
+
+            return {
+                local: value
+            };
         }
 
-        return number;
+        return value;
+    };
+
+    var format = function(tel) {
+
+        var a = [
+            formatCountry(tel.country),
+            formatCode(tel.code),
+            formatNdd(tel.ndd),
+            tel.local
+        ];
+
+        return $.grep(a,
+            function(i) { return i; })
+            .join(' ');
     },
-        formatNdd = function(ndd) {
-            return ndd ? ' (' + ndd + ')' : '';
+        formatCountry = function(value) {
+            return value ? '[' + value.toUpperCase() + ']' : '';
+        },
+        formatCode = function(value) {
+            return value ? '+' + value : '';
+        },
+        formatNdd = function(value) {
+            return value ? '(' + value + ')' : '';
         };
 
-    var setValue = function($el, value) {
-        if ($el.val() != value) $el.val(value);
+    var prefixBy = function(propertyName, value, prefixes) {
+        if (!value) return null;
+        var matches = $.grep(prefixes, function(prefix) {
+            return prefix[propertyName] == value;
+        });
+        return matches.length === 1 ? matches[0] : null;
     };
-    
+
 })(jQuery);
