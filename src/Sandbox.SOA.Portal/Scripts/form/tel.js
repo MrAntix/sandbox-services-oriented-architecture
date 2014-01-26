@@ -1,5 +1,5 @@
 ﻿;
-(function($) {
+(function($, document) {
     'use strict';
 
     // TEL CLASS DEFINITION
@@ -44,8 +44,9 @@
             .wrap('<div class="input-group"/>')
             .before($toggle)
             .after(this.$number
-                .on("change.bs.tel", function(e) {
-                    if ($.inArray(e.keyCode, [8, 46]) != -1) return;
+                .on("change.bs.tel keyup.bs.tel", function (e) {
+                    console.log(e.keyCode);
+                    if (e.keyCode < 48 || e.keyCode > 56) return;
 
                     that.setNumber(that.$number.val());
                 })
@@ -78,7 +79,7 @@
         tel.country = null;
         this.number = format(tel);
 
-        if (this.$number.val() != this.number)
+        if (caretIsLast(this.$number[0]))
             this.$number.val(this.number);
     };
 
@@ -123,7 +124,7 @@
     };
 
     var numberMatch = {
-        regex: /^(\[([a-zA-Z]{2})\]\s*)?\+?(\d{1,4})?\s*?(\s|\s?\((\d{0,4})\)?)?\s*?(\s)?([\-\.\s\d]{1,15})?$/,
+        regex: /^(\[([a-zA-Z]{2})\]\s*)?\+?(\d{1,4})?\s*?(\s|\s?\((\d{0,4})\))?\s*?(\s)?([\-\.\s\d]{1,15})?$/,
         country: 2,
         code: 3,
         nddContainer: 4,
@@ -224,4 +225,22 @@
         return matches.length === 1 ? matches[0] : null;
     };
 
-})(jQuery);
+    var caretIsLast = function (el) {
+
+        var valueLength = el.value.length;
+
+        if (el.selectionStart !== undefined)
+            return el.selectionStart === valueLength;
+
+        if (document.selection) {
+
+            var sel = document.selection.createRange();
+            sel.moveStart('character', -valueLength);
+
+            return sel.text.length === valueLength;
+        }
+
+        throw "not supported";
+    };
+
+})(jQuery, document);
