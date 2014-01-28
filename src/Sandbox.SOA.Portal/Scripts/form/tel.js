@@ -9,10 +9,9 @@
         var that = this;
 
         this.options = options;
-        this.prefixes = {};
         this.$element = $(element);
         this.$number = $('<input type="tel" class="form-control" />').data('bs.tel', this);
-        this.$button = $('<button class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="caret" /></button>');
+        this.$button = $('<a class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="caret" /></a>');
 
         var $list = $('<ul class="dropdown-menu"/>').css({ maxHeight: "250px", overflowY: "scroll" }),
             $toggle = $('<div class="input-group-btn"/>')
@@ -36,8 +35,6 @@
             $list.append(
                 $('<li/>').append($option)
             );
-
-            this.prefixes[prefix.country.toUpperCase()] = prefix;
         }
 
         this.$element
@@ -45,8 +42,7 @@
             .before($toggle)
             .after(this.$number
                 .on("change.bs.tel keyup.bs.tel", function (e) {
-                    console.log(e.keyCode);
-                    if (e.keyCode < 48 || e.keyCode > 56) return;
+                    if (e.which < 48 || e.which > 56) return;
 
                     that.setNumber(that.$number.val());
                 })
@@ -65,16 +61,18 @@
 
     Tel.prototype.setNumber = function(number) {
 
-        this.set(this.country, number);
+        this.set(null, number);
         this.$button.css(getButtonCss(this.country, this.options));
     };
 
     Tel.prototype.set = function(country, number) {
 
-        var tel = parse(formatCountry(country) + number, this.options.prefixes);
+        if (country) number = formatCountry(country) + number;
+        
+        var tel = parse(number, this.options.prefixes);
         this.$element.val(format(tel));
 
-        this.country = tel.country;
+        if (tel.country) this.country = tel.country;
 
         tel.country = null;
         this.number = format(tel);
