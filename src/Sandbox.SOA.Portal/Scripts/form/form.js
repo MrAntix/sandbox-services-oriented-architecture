@@ -6,7 +6,7 @@
 
     $(function () {
 
-        $("[type='tel']").tel();
+        $("[type='tel']").tel({debug:true});
         $('select').selectpicker();
 
         //alert($.fn.tel.format("44 07899 793042"));

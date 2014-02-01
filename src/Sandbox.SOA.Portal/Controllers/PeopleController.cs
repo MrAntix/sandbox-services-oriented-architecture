@@ -40,11 +40,11 @@ namespace Sandbox.SOA.Portal.Controllers
                        : View(model);
         }
 
-        [Route("", Name = RouteConfig.People)]
-        public ActionResult Index(PersonSearchCriteria model)
-        {
-            return _actionHandler.With(model).Returns<PersonGridViewModel>();
-        }
+[Route("", Name = RouteConfig.People)]
+public ActionResult Index(PersonSearchCriteria model)
+{
+    return _actionHandler.With(model).Returns<PersonGridViewModel>();
+}
 
         [Route("create", Name = RouteConfig.PersonCreate)]
         public ActionResult Create()

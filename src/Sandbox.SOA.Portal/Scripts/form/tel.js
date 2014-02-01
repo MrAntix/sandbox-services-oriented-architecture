@@ -12,11 +12,11 @@
         this.$element = $(element);
         this.$number = $('<input type="tel" class="form-control" />').data('bs.tel', this);
         this.$button = $('<a class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="caret" /></a>');
+        this.$list = $('<ul class="dropdown-menu"/>').css({ maxHeight: "250px", overflowY: "scroll" });
 
-        var $list = $('<ul class="dropdown-menu"/>').css({ maxHeight: "250px", overflowY: "scroll" }),
-            $toggle = $('<div class="input-group-btn"/>')
+        var $toggle = $('<div class="input-group-btn"/>')
                 .append(this.$button)
-                .append($list);
+                .append(this.$list);
 
         for (var i = 0; i < this.options.prefixes.length; i++) {
             var prefix = this.options.prefixes[i],
@@ -29,10 +29,10 @@
                                 backgroundPosition: 'left center'
                             })
                     )
-                    .data('country', prefix.country)
-                    .on('click.bs.tel', function () { that.setCountry($(this).data('country')); });
+                    .data('prefix', prefix)
+                    .on('click.bs.tel', function () { that.setCountry($(this).data('prefix').country); });
 
-            $list.append(
+            this.$list.append(
                 $('<li/>').append($option)
             );
         }
@@ -68,17 +68,73 @@
     Tel.prototype.set = function(country, number) {
 
         if (country) number = formatCountry(country) + number;
-        
+
         var tel = parse(number, this.options.prefixes);
+
+        if (tel.country) {
+            this.country = tel.country;
+        } else if (tel.code) {
+
+            var matches = prefixesBy('code', tel.code, this.options.prefixes);
+            if (this.countryRecent && anyPrefixBy('country', this.countryRecent, matches)) {
+                this.country = this.countryRecent;
+
+            } else if (this.country && !anyPrefixBy('country', this.country, matches)) {
+                this.country = null;
+
+            }
+        }
+
+        if (tel.country != this.country) {
+            tel.country = this.country;
+            if (this.country) {
+                this.countryRecent = this.country;
+            }
+
+            tel = parse(format(tel), this.options.prefixes);
+        }
+
         this.$element.val(format(tel));
 
-        if (tel.country) this.country = tel.country;
-
+        this.sort(tel);
+        
         tel.country = null;
         this.number = format(tel);
 
-        if (caretIsLast(this.$number[0]))
+        if (caretAtEnd(this.$number[0])
+            && this.$number.val() != this.number)
             this.$number.val(this.number);
+
+    };
+
+    Tel.prototype.sort = function(tel) {
+        var $items = this.$list.children("li"),
+            map = $.map($items,
+                function(el, index) {
+                    return {
+                        index: index,
+                        prefix: $(el).children().first().data("prefix")
+                    };
+                })
+                .sort(function(a, b) {
+
+                    if (a.prefix.country == tel.country) return -1;
+                    if (b.prefix.country == tel.country) return 1;
+
+                    if (tel.code) {
+                        if (a.prefix.code == tel.code
+                            && b.prefix.code != tel.code) return -1;
+
+                        if (a.prefix.code != tel.code
+                            && b.prefix.code == tel.code) return 1;
+                    }
+
+                    return a.prefix.display.localeCompare(b.prefix.display);
+                });
+
+        for (var i = 0; i < map.length; i++) {
+            this.$list.append($items[map[i].index]);
+        }
     };
 
     Tel.DEFAULTS = {
@@ -122,13 +178,13 @@
     };
 
     var numberMatch = {
-        regex: /^(\[([a-zA-Z]{2})\]\s*)?\+?(\d{1,4})?\s*?(\s|\s?\((\d{0,4})\))?\s*?(\s)?([\-\.\s\d]{1,15})?$/,
+        regex: /^(\[([a-zA-Z]{2})\]\s*)?(\+(\d{1,4}))?\s*?(\s|\s?\((\d{0,4})\))?\s*?(\s)?([\-\.\s\d]{1,15})?$/,
         country: 2,
-        code: 3,
-        nddContainer: 4,
-        ndd: 5,
-        localSpace: 6,
-        local: 7
+        code: 4,
+        nddContainer: 5,
+        ndd: 6,
+        localSpace: 7,
+        local: 8
     };
 
     var getButtonCss = function (country, options) {
@@ -155,8 +211,8 @@
                     code = match[numberMatch.code] || '',
                     ndd = match[numberMatch.ndd] || '',
                     local = match[numberMatch.local] || '',
-                    prefix = prefixBy('country', country, prefixes)
-                        || prefixBy('code', code, prefixes);
+                    prefix = firstPrefixBy('country', country, prefixes)
+                        || firstPrefixBy('code', code, prefixes);
 
                 if (prefix) {
                     country = country || prefix.country;
@@ -215,15 +271,23 @@
             return value ? '(' + value + ')' : '';
         };
 
-    var prefixBy = function(propertyName, value, prefixes) {
-        if (!value) return null;
+    var prefixesBy = function(propertyName, value, prefixes) {
+        if (!value) return [];
         var matches = $.grep(prefixes, function(prefix) {
             return prefix[propertyName] == value;
         });
-        return matches.length === 1 ? matches[0] : null;
-    };
+        return matches;
+    },
+        anyPrefixBy = function(propertyName, value, prefixes) {
+            var matches = prefixesBy(propertyName, value, prefixes);
+            return matches.length;
+        },
+        firstPrefixBy = function(propertyName, value, prefixes) {
+            var matches = prefixesBy(propertyName, value, prefixes);
+            return matches.length === 1 ? matches[0] : null;
+        };
 
-    var caretIsLast = function (el) {
+    var caretAtEnd = function (el) {
 
         var valueLength = el.value.length;
 
