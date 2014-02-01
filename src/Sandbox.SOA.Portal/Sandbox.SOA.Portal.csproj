@@ -509,7 +509,7 @@
     <Compile Include="App_Start\ActionResultBuilder.cs" />
     <Compile Include="App_Start\BreadcrumbHelper.cs" />
     <Compile Include="App_Start\Filters\AjaxValidationFilter.cs" />
-    <Compile Include="App_Start\Helpers\HtmlExtensions.cs" />
+    <Compile Include="App_Start\Helpers\ResourceManagerEx.cs" />
     <Compile Include="App_Start\Validation\FluentValidationValidatorFactory.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Helpers\UrlExtensions.cs" />

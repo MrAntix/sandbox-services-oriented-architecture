@@ -1,12 +1,10 @@
-﻿@using Sandbox.SOA.Portal.Helpers
-@using Sandbox.SOA.Portal.Resources
-@using SquishIt.Framework
+﻿@using SquishIt.Framework
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-        <title>@ViewBag.Title - SiteResources.Title</title>
+        <title>@ViewBag.Title - @SiteResources.Title</title>
 
         @Html.Raw(Bundle.Css()
                         .Add("~/Content/Site/Main.css")
@@ -18,7 +16,7 @@
         @Html.Raw(Bundle.JavaScript()
                         .Add("~/Scripts/modernizr-2.7.1.js")
                         .Render("~/content/scripts-head-#.js")
-                        )
+             )
     </head>
     <body>
         <div class="page">

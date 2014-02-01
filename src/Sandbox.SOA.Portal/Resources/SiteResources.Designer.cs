@@ -8,6 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.Web;
+
+using Sandbox.SOA.Portal.Helpers;
+
 namespace Sandbox.SOA.Portal.Resources {
     using System;
     
@@ -23,8 +27,8 @@ namespace Sandbox.SOA.Portal.Resources {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class SiteResources {
-        
-        private static global::System.Resources.ResourceManager resourceMan;
+
+        private static ResourceManagerEx resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
@@ -34,12 +38,12 @@ namespace Sandbox.SOA.Portal.Resources {
         
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
-        /// </summary>
+        /// </summary>ResourceManagerEx
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
+        public static ResourceManagerEx ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Sandbox.SOA.Portal.Resources.SiteResources", typeof(SiteResources).Assembly);
+                    var temp = new ResourceManagerEx("Sandbox.SOA.Portal.Resources.SiteResources", typeof(SiteResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -63,18 +67,20 @@ namespace Sandbox.SOA.Portal.Resources {
         /// <summary>
         ///   Looks up a localized string similar to This site is an example of a &lt;strong&gt;Service Oriented Architecture&lt;/strong&gt;.
         /// </summary>
-        public static string Tag {
+        public static IHtmlString Tag
+        {
             get {
-                return ResourceManager.GetString("Tag", resourceCulture);
+                return ResourceManager.GetHtmlString("Tag", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Service Oriented Architechture.
         /// </summary>
-        public static string Title {
+        public static IHtmlString Title
+        {
             get {
-                return ResourceManager.GetString("Title", resourceCulture);
+                return ResourceManager.GetHtmlString("Title", resourceCulture);
             }
         }
     }
