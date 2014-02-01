@@ -5,7 +5,7 @@ using Antix.Data.Static;
 
 using Sandbox.SOA.Common.Contracts.People;
 using Sandbox.SOA.Common.Services;
-using Sandbox.SOA.Portal.Models.Person;
+using Sandbox.SOA.Portal.Models.People;
 using Sandbox.SOA.Portal.Properties;
 
 namespace Sandbox.SOA.Portal.Controllers
@@ -61,7 +61,7 @@ namespace Sandbox.SOA.Portal.Controllers
                                  .Done("Edit", p => p);
         }
 
-        [Route("edit/{identifier}", Name = RouteConfig.PersonEdit)]
+        [Route("{identifier}/edit", Name = RouteConfig.PersonEdit)]
         public ActionResult Edit(PersonIdentifier model)
         {
             ViewData["CountryCode"] = Phone.CountryConfigurations
@@ -75,7 +75,7 @@ namespace Sandbox.SOA.Portal.Controllers
         }
 
         [HttpPost]
-        [Route("edit/{identifier}", Name = RouteConfig.PersonEditPost)]
+        [Route("{identifier}/edit", Name = RouteConfig.PersonEditPost)]
         public ActionResult Edit(Person model)
         {
             return _actionHandler.With(model)
@@ -90,7 +90,7 @@ namespace Sandbox.SOA.Portal.Controllers
                                      : string.Concat("(", config.NationalDirectDialing, ") "));
         }
 
-        [Route("edit/{identifier}/delete", Name = RouteConfig.PersonDelete)]
+        [Route("{identifier}/delete", Name = RouteConfig.PersonDelete)]
         public ActionResult Delete(PersonIdentifier model)
         {
             return _actionHandler.With(model).Returns<PersonDeleteViewModel>();
@@ -98,7 +98,7 @@ namespace Sandbox.SOA.Portal.Controllers
 
         [HttpPost]
         [ActionName("Delete")]
-        [Route("edit/{identifier}/delete", Name = RouteConfig.PersonDeletePost)]
+        [Route("{identifier}/delete", Name = RouteConfig.PersonDeletePost)]
         public ActionResult DeletePost(PersonIdentifier model)
         {
             return _actionHandler.With(model)

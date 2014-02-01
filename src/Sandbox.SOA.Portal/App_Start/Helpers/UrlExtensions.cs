@@ -1,4 +1,6 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace Sandbox.SOA.Portal.Helpers
 {
@@ -27,36 +29,33 @@ namespace Sandbox.SOA.Portal.Helpers
 
         public static string PersonEdit(
             this UrlHelper urlHelper,
-            string identifier
+            Guid identifier
             )
         {
-            return urlHelper.RouteUrl(RouteConfig.PersonEdit, new { identifier });
+            return urlHelper.RouteUrl(RouteConfig.PersonEdit,
+                                      new {identifier});
         }
 
         public static string PersonDelete(
             this UrlHelper urlHelper,
-            string identifier
+            Guid identifier
             )
         {
-            return urlHelper.RouteUrl(RouteConfig.PersonDelete, new { identifier });
+            return urlHelper.RouteUrl(RouteConfig.PersonDelete,
+                                      new {identifier});
         }
 
-        //public static string People(
-        //    this UrlHelper urlHelper,
-        //    string actionName = null,
-        //    string personIdentifier = null)
-        //{
-        //    if (personIdentifier == null
-        //        && actionName != null)
-        //        personIdentifier = urlHelper.CurrentPersonIdentifier();
-
-        //    return urlHelper.RouteUrl(RouteConfig.Root,
-        //                              new
-        //                                  {
-        //                                      controller = "People",
-        //                                      action = actionName,
-        //                                      identifier = personIdentifier
-        //                                  });
-        //}
+        public static string PersonAddresses(
+            this UrlHelper urlHelper,
+            Guid personIdentifier
+            )
+        {
+            return urlHelper.RouteUrl(RouteConfig.PersonAddresses,
+                                      new RouteValueDictionary
+                                          {
+                                              {"person.identifier", personIdentifier}
+                                          }
+                );
+        }
     }
 }

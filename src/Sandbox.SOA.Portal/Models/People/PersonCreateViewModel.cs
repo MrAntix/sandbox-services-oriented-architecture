@@ -3,7 +3,7 @@ using System.Web.Mvc;
 
 using Sandbox.SOA.Portal.Helpers;
 
-namespace Sandbox.SOA.Portal.Models.Person
+namespace Sandbox.SOA.Portal.Models.People
 {
     public class PersonCreateViewModel : FormViewModel<PersonCreateViewModel>
     {

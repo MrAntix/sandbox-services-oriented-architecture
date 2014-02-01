@@ -1,7 +1,7 @@
 ﻿using Sandbox.SOA.Common.Contracts.People;
 using Sandbox.SOA.Common.Contracts.People.Addresses;
 
-namespace Sandbox.SOA.Portal.Models.Person
+namespace Sandbox.SOA.Portal.Models.People
 {
     public class PersonRowViewModel
     {

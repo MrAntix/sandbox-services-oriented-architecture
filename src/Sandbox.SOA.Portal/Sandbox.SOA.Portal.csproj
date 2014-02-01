@@ -526,14 +526,14 @@
     <Compile Include="Models\FormSubmitTypes.cs" />
     <Compile Include="Models\FormViewModel.cs" />
     <Compile Include="Models\IFormViewModel.cs" />
-    <Compile Include="Models\Person\DropdownList.cs" />
-    <Compile Include="Models\Person\PersonCreateViewModel.cs" />
-    <Compile Include="Models\Person\PersonDeleteViewModel.cs" />
-    <Compile Include="Models\Person\PersonGridViewModel.cs" />
-    <Compile Include="Models\Person\PersonNameEditViewModel.cs" />
-    <Compile Include="Models\Person\PersonRowViewModel.cs" />
-    <Compile Include="Models\Person\PersonEditViewModel.cs" />
-    <Compile Include="Models\Person\PersonMobilePhoneEditViewModel.cs" />
+    <Compile Include="Models\People\DropdownList.cs" />
+    <Compile Include="Models\People\PersonCreateViewModel.cs" />
+    <Compile Include="Models\People\PersonDeleteViewModel.cs" />
+    <Compile Include="Models\People\PersonGridViewModel.cs" />
+    <Compile Include="Models\People\PersonNameEditViewModel.cs" />
+    <Compile Include="Models\People\PersonRowViewModel.cs" />
+    <Compile Include="Models\People\PersonEditViewModel.cs" />
+    <Compile Include="Models\People\PersonMobilePhoneEditViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>

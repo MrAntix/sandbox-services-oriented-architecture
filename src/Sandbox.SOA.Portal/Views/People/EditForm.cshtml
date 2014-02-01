@@ -1,4 +1,4 @@
-﻿@model Sandbox.SOA.Portal.Models.Person.PersonEditViewModel
+﻿@model Sandbox.SOA.Portal.Models.People.PersonEditViewModel
 
 <form action="@Url.PersonEdit(Model.Identifier)"
       method="POST"
@@ -7,6 +7,8 @@
     
         @Html.EditorFor(m => m.Name)
         @Html.EditorFor(m => m.MobilePhone)
+        
+        <a href="@Url.PersonAddresses(Model.Identifier)">Addresses</a>
 
     </div>
     <div class="panel-footer">

@@ -4,5 +4,14 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+@section breadcrumb{
+
+    @(Html.Breadcrumb()
+          .Add("Home", Url.Home())
+          .Add("People", Url.People())
+          .Add("Edit", Url.PersonEdit(Model.Person.Identifier))
+          .Add("Addresses", Url.PersonAddresses(Model.Person.Identifier))
+          .Render())
+}
+
 

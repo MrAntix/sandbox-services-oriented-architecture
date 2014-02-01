@@ -3,11 +3,11 @@ using System.Web.Mvc;
 
 using Sandbox.SOA.Portal.Helpers;
 
-namespace Sandbox.SOA.Portal.Models.Person
+namespace Sandbox.SOA.Portal.Models.People
 {
     public class PersonEditViewModel : FormViewModel<PersonEditViewModel>
     {
-        public string Identifier { get; set; }
+        public Guid Identifier { get; set; }
         public PersonNameEditViewModel Name { get; set; }
         public PersonMobilePhoneEditViewModel MobilePhone { get; set; }
 

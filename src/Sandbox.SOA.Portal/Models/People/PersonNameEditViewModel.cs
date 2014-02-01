@@ -1,4 +1,4 @@
-﻿namespace Sandbox.SOA.Portal.Models.Person
+﻿namespace Sandbox.SOA.Portal.Models.People
 {
     public class PersonNameEditViewModel
     {

@@ -19,5 +19,7 @@ namespace Sandbox.SOA.Portal
         public const string PersonEditPost = "PersonEditPost";
         public const string PersonDelete = "PersonDelete";
         public const string PersonDeletePost = "PersonDeletePost";
+
+        public const string PersonAddresses = "PersonAddresses";
     }
 }

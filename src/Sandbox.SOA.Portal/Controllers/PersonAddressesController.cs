@@ -25,7 +25,7 @@ namespace Sandbox.SOA.Portal.Controllers
         {
         }
 
-        [Route("")]
+        [Route("", Name = RouteConfig.PersonAddresses)]
         public async Task<ActionResult> Index(PersonAddressSearchCriteria model)
         {
             return _actionHandler.With(model).Returns<PersonAddressSearchResult>();
