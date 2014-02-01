@@ -1,0 +1,32 @@
+﻿@model IFormViewModel
+
+<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+        <p>
+            @switch (Model.Submit)
+            {
+                case FormSubmitTypes.Save:
+                    <button type="submit" class="btn btn-primary">@ButtonResources.Save</button>
+                    break;
+                case FormSubmitTypes.Create:
+                    <button type="submit" class="btn btn-primary">@ButtonResources.Create</button>
+                    break;
+                case FormSubmitTypes.Delete:
+                    <button type="submit" class="btn btn-danger">@ButtonResources.Delete</button>
+                    break;
+            }
+            @if (Model.Close != null)
+            {
+                <a href="@Model.Close(Url, Model)" class="btn btn-default">@LinkResources.Close</a>
+            }
+            <span class="form-status"></span>
+            @if (Model.Delete != null)
+            {
+                <a href="@Model.Delete(Url, Model)" data-toggle="modal" data-target="#modal" class="btn btn-default pull-right">@LinkResources.Delete</a>
+            }
+        </p>
+    </div>
+    <div class="validation-summary row">
+        @Html.ValidationSummary()
+    </div>
+</div>

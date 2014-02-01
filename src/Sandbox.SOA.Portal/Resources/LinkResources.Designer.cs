@@ -22,14 +22,14 @@ namespace Sandbox.SOA.Portal.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class SiteResources {
+    public class LinkResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal SiteResources() {
+        internal LinkResources() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Sandbox.SOA.Portal.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Sandbox.SOA.Portal.Resources.SiteResources", typeof(SiteResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Sandbox.SOA.Portal.Resources.LinkResources", typeof(LinkResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,20 +61,29 @@ namespace Sandbox.SOA.Portal.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This site is an example of a &lt;strong&gt;Service Oriented Architecture&lt;/strong&gt;.
+        ///   Looks up a localized string similar to Close.
         /// </summary>
-        public static string Tag {
+        public static string Close {
             get {
-                return ResourceManager.GetString("Tag", resourceCulture);
+                return ResourceManager.GetString("Close", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Service Oriented Architechture.
+        ///   Looks up a localized string similar to Create.
         /// </summary>
-        public static string Title {
+        public static string Create {
             get {
-                return ResourceManager.GetString("Title", resourceCulture);
+                return ResourceManager.GetString("Create", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string Delete {
+            get {
+                return ResourceManager.GetString("Delete", resourceCulture);
             }
         }
     }

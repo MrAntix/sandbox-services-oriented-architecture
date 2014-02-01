@@ -1,20 +1,14 @@
-﻿@using Sandbox.SOA.Portal.Helpers
-@model Sandbox.SOA.Portal.Models.Person.PersonDeleteViewModel
+﻿@model Sandbox.SOA.Portal.Models.Person.PersonDeleteViewModel
 
 <form action="@Url.PersonDelete(Model.Identifier)"
       method="POST"
       role="form" class="form-horizontal">
     <div class="panel-body">
     
-        @Html.DisplayFor(m=>m.Name)
+        @Html.DisplayFor(m => m.Name)
 
     </div>
     <div class="panel-footer">
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-danger">Confirm Delete</button>
-                <a data-dismiss="modal" href="@Url.PersonEdit(Model.Identifier)" class="btn btn-default">Cancel</a>
-            </div>
-        </div>        
+        @Html.EditorFor(m => m, "FormFooter")
     </div>
 </form>

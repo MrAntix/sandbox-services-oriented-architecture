@@ -1,7 +1,8 @@
 ﻿using System.Linq;
-using System.Threading;
 using System.Web.Mvc;
+
 using Antix.Data.Static;
+
 using Sandbox.SOA.Common.Contracts.People;
 using Sandbox.SOA.Common.Services;
 using Sandbox.SOA.Portal.Models.Person;
@@ -40,16 +41,16 @@ namespace Sandbox.SOA.Portal.Controllers
                        : View(model);
         }
 
-[Route("", Name = RouteConfig.People)]
-public ActionResult Index(PersonSearchCriteria model)
-{
-    return _actionHandler.With(model).Returns<PersonGridViewModel>();
-}
+        [Route("", Name = RouteConfig.People)]
+        public ActionResult Index(PersonSearchCriteria model)
+        {
+            return _actionHandler.With(model).Returns<PersonGridViewModel>();
+        }
 
         [Route("create", Name = RouteConfig.PersonCreate)]
         public ActionResult Create()
         {
-            return AjaxView(null);
+            return AjaxView(new PersonCreateViewModel());
         }
 
         [HttpPost]
@@ -89,7 +90,7 @@ public ActionResult Index(PersonSearchCriteria model)
                                      : string.Concat("(", config.NationalDirectDialing, ") "));
         }
 
-        [Route("delete", Name = RouteConfig.PersonDelete)]
+        [Route("edit/{identifier}/delete", Name = RouteConfig.PersonDelete)]
         public ActionResult Delete(PersonIdentifier model)
         {
             return _actionHandler.With(model).Returns<PersonDeleteViewModel>();
@@ -97,7 +98,7 @@ public ActionResult Index(PersonSearchCriteria model)
 
         [HttpPost]
         [ActionName("Delete")]
-        [Route("delete", Name = RouteConfig.PersonDeletePost)]
+        [Route("edit/{identifier}/delete", Name = RouteConfig.PersonDeletePost)]
         public ActionResult DeletePost(PersonIdentifier model)
         {
             return _actionHandler.With(model)

@@ -523,6 +523,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\FormSubmitTypes.cs" />
+    <Compile Include="Models\FormViewModel.cs" />
+    <Compile Include="Models\IFormViewModel.cs" />
     <Compile Include="Models\Person\DropdownList.cs" />
     <Compile Include="Models\Person\PersonCreateViewModel.cs" />
     <Compile Include="Models\Person\PersonDeleteViewModel.cs" />
@@ -536,6 +539,16 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ButtonResources.Designer.cs">
+      <DependentUpon>ButtonResources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\LinkResources.Designer.cs">
+      <DependentUpon>LinkResources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Resources\SiteResources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -572,6 +585,7 @@
     <Content Include="Views\People\DisplayTemplates\PersonNameEditViewModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\_Layout.cshtml" />
     <Content Include="Views\Shared\_LayoutModal.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\FormFooter.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -590,6 +604,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\ButtonResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ButtonResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\LinkResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>LinkResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\SiteResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>SiteResources.Designer.cs</LastGenOutput>

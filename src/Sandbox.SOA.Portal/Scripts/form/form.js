@@ -78,6 +78,8 @@
                         }
 
                         $form.find("." + invalid).removeClass('invalid');
+                        
+                        $form.addClass("")
                     });
 
                 return false;
