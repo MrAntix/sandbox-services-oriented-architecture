@@ -5,7 +5,6 @@ using Antix.Data.Static;
 
 using Sandbox.SOA.Common.Contracts.People;
 using Sandbox.SOA.Common.Services;
-using Sandbox.SOA.Portal.Models.People;
 using Sandbox.SOA.Portal.Properties;
 
 namespace Sandbox.SOA.Portal.Controllers
@@ -24,9 +23,9 @@ namespace Sandbox.SOA.Portal.Controllers
 
         public PeopleController() :
             this(new ClientCommandHandler(Settings.Default.ServicesApiUrl)
-                     .Get<PersonSearchCriteria, PersonGridViewModel>("people")
-                     .Get<PersonIdentifier, PersonEditViewModel>("people/{identifier}")
-                     .Get<PersonIdentifier, PersonDeleteViewModel>("people/{identifier}")
+                     .Get<PersonSearchCriteria, PersonSearchResult>("people")
+                     .Get<PersonIdentifier, Person>("people/{identifier}")
+                     .Get<PersonIdentifier, PersonInfo>("people/{identifier}")
                      .Post<PersonInfo, PersonIdentifier>("people")
                      .Put<Person>("people/{identifier}")
                      .Delete<PersonIdentifier>("people/{identifier}")
@@ -44,13 +43,13 @@ namespace Sandbox.SOA.Portal.Controllers
         [Route("", Name = RouteConfig.People)]
         public ActionResult Index(PersonSearchCriteria model)
         {
-            return _actionHandler.With(model).Returns<PersonGridViewModel>();
+            return _actionHandler.With(model).Returns<PersonSearchResult>();
         }
 
         [Route("create", Name = RouteConfig.PersonCreate)]
         public ActionResult Create()
         {
-            return AjaxView(new PersonCreateViewModel());
+            return AjaxView(new PersonInfo());
         }
 
         [HttpPost]
@@ -71,7 +70,7 @@ namespace Sandbox.SOA.Portal.Controllers
                                                    Value = c.CountryCode
                                                });
 
-            return _actionHandler.With(model).Returns<PersonEditViewModel>();
+            return _actionHandler.With(model).Returns<Person>();
         }
 
         [HttpPost]
@@ -93,7 +92,7 @@ namespace Sandbox.SOA.Portal.Controllers
         [Route("{identifier}/delete", Name = RouteConfig.PersonDelete)]
         public ActionResult Delete(PersonIdentifier model)
         {
-            return _actionHandler.With(model).Returns<PersonDeleteViewModel>();
+            return _actionHandler.With(model).Returns<PersonInfo>();
         }
 
         [HttpPost]

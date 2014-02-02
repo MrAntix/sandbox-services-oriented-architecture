@@ -1,7 +1,7 @@
-﻿@model PersonAddressesIndexViewModel
+﻿@model Sandbox.SOA.Common.Contracts.People.Addresses.PersonAddressSearchResult
 
 @{
-    ViewBag.Title = Model.Person.Name.Full + "'s Addresses";
+    ViewBag.Title = Model.Person.Name.Full() + "'s Addresses";
 }
 
 @section breadcrumb{

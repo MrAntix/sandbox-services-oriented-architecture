@@ -78,6 +78,7 @@
     <Compile Include="Services\Models\SearchCriteria.cs" />
     <Compile Include="Services\Models\SearchResult.cs" />
     <Compile Include="Validation\People\PersonInfoValidator.cs" />
+    <Compile Include="Validation\People\PersonValidator.cs" />
     <Compile Include="Validation\ValidationFailure.cs" />
     <Compile Include="Validation\IValidationHandler.cs" />
     <Compile Include="Validation\CommonValidationHandler.cs" />

@@ -527,16 +527,7 @@
     </Compile>
     <Compile Include="Models\FormSubmitTypes.cs" />
     <Compile Include="Models\DropdownList.cs" />
-    <Compile Include="Models\People\PersonCreateViewModel.cs" />
-    <Compile Include="Models\People\PersonDeleteViewModel.cs" />
-    <Compile Include="Models\People\PersonGridViewModel.cs" />
-    <Compile Include="Models\People\PersonInfoViewModel.cs" />
-    <Compile Include="Models\People\PersonNameEditViewModel.cs" />
-    <Compile Include="Models\People\PersonNameViewModel.cs" />
-    <Compile Include="Models\People\PersonRowViewModel.cs" />
-    <Compile Include="Models\People\PersonEditViewModel.cs" />
-    <Compile Include="Models\People\PersonMobilePhoneEditViewModel.cs" />
-    <Compile Include="Models\PersonAddresses\PersonAddressesIndexViewModel.cs" />
+    <Compile Include="Models\ModelExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -569,15 +560,15 @@
     <Content Include="Views\Shared\DisplayTemplates\Object.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Object.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\SearchCriteria.cshtml" />
-    <Content Include="Views\People\EditorTemplates\PersonGridViewModel.cshtml" />
-    <Content Include="Views\People\EditorTemplates\PersonRowViewModel.cshtml" />
+    <Content Include="Views\People\EditorTemplates\PersonSearchResult.cshtml" />
+    <Content Include="Views\People\EditorTemplates\PersonInfo.cshtml" />
     <Content Include="Views\People\IndexForm.cshtml" />
     <Content Include="Views\People\Edit.cshtml" />
     <Content Include="Views\People\EditForm.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\People\EditorTemplates\PersonNameEditViewModel.cshtml" />
+    <Content Include="Views\People\EditorTemplates\PersonName.cshtml" />
     <Content Include="Views\Shared\Breadcrumbs.cshtml" />
-    <Content Include="Views\People\EditorTemplates\PersonMobilePhoneEditViewModel.cshtml" />
+    <Content Include="Views\People\EditorTemplates\PersonMobilePhone.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\_Layout.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DropdownList.cshtml" />
@@ -585,7 +576,7 @@
     <Content Include="Views\People\Create.cshtml" />
     <Content Include="Views\People\Delete.cshtml" />
     <Content Include="Views\People\DeleteForm.cshtml" />
-    <Content Include="Views\People\DisplayTemplates\PersonNameEditViewModel.cshtml" />
+    <Content Include="Views\People\DisplayTemplates\PersonName.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\_Layout.cshtml" />
     <Content Include="Views\Shared\_LayoutModal.cshtml" />
     <Content Include="Views\Shared\FormFooter.cshtml" />
