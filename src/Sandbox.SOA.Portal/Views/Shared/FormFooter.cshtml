@@ -17,7 +17,7 @@
             }
             @if (Model.Close != null)
             {
-                <a href="@Model.Close" class="btn btn-default">@LinkResources.Close</a>
+                <a href="@Model.Close" class="btn btn-default" data-dismiss="modal">@LinkResources.Close</a>
             }
             <span class="form-status"></span>
             @if (Model.Delete != null)
@@ -28,7 +28,7 @@
     </div>
 </div>
 
-    <div class="validation-summary row">
-        @Html.ValidationSummary()
-    </div>
+<div class="validation-summary">
+    @Html.ValidationSummary()
+</div>
 
