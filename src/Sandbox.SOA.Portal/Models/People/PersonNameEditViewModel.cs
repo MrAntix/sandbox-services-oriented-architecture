@@ -1,20 +1,8 @@
-﻿namespace Sandbox.SOA.Portal.Models.People
+﻿using Sandbox.SOA.Common.Contracts.People;
+
+namespace Sandbox.SOA.Portal.Models.People
 {
-    public class PersonNameEditViewModel
+    public class PersonNameEditViewModel:PersonName
     {
-        public string First { get; set; }
-        public string Last { get; set; }
-
-        public string Full
-        {
-            get
-            {
-                var name = string.Format("{0} {1}", First, Last);
-
-                return string.IsNullOrWhiteSpace(name)
-                           ? "(not set)"
-                           : name;
-            }
-        }
     }
 }

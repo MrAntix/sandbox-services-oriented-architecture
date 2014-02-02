@@ -509,6 +509,8 @@
     <Compile Include="App_Start\ActionResultBuilder.cs" />
     <Compile Include="App_Start\BreadcrumbHelper.cs" />
     <Compile Include="App_Start\Filters\AjaxValidationFilter.cs" />
+    <Compile Include="Models\FormFooterViewModel.cs" />
+    <Compile Include="App_Start\Helpers\HtmlHelperExtensions.cs" />
     <Compile Include="App_Start\Helpers\ResourceManagerEx.cs" />
     <Compile Include="App_Start\Validation\FluentValidationValidatorFactory.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -524,16 +526,17 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\FormSubmitTypes.cs" />
-    <Compile Include="Models\FormViewModel.cs" />
-    <Compile Include="Models\IFormViewModel.cs" />
-    <Compile Include="Models\People\DropdownList.cs" />
+    <Compile Include="Models\DropdownList.cs" />
     <Compile Include="Models\People\PersonCreateViewModel.cs" />
     <Compile Include="Models\People\PersonDeleteViewModel.cs" />
     <Compile Include="Models\People\PersonGridViewModel.cs" />
+    <Compile Include="Models\People\PersonInfoViewModel.cs" />
     <Compile Include="Models\People\PersonNameEditViewModel.cs" />
+    <Compile Include="Models\People\PersonNameViewModel.cs" />
     <Compile Include="Models\People\PersonRowViewModel.cs" />
     <Compile Include="Models\People\PersonEditViewModel.cs" />
     <Compile Include="Models\People\PersonMobilePhoneEditViewModel.cs" />
+    <Compile Include="Models\PersonAddresses\PersonAddressesIndexViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -585,7 +588,7 @@
     <Content Include="Views\People\DisplayTemplates\PersonNameEditViewModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\_Layout.cshtml" />
     <Content Include="Views\Shared\_LayoutModal.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\FormFooter.cshtml" />
+    <Content Include="Views\Shared\FormFooter.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

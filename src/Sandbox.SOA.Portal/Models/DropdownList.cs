@@ -1,4 +1,4 @@
-﻿namespace Sandbox.SOA.Portal.Models.People
+﻿namespace Sandbox.SOA.Portal.Models
 {
     public class DropdownList
     {

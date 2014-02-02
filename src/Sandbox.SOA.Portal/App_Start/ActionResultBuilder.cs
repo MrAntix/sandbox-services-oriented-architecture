@@ -60,17 +60,17 @@ namespace Sandbox.SOA.Portal
             var result = default(TOut);
             if (_controller.ModelState.IsValid)
             {
-                try
-                {
+                //try
+                //{
                     result = _commandHandler.Handle<TIn, TOut>(_model);
 
                     return OrDefault(_done, result);
-                }
-                catch (Exception ex)
-                {
-                    _controller.ModelState
-                               .AddModelError(string.Empty, ex.Message);
-                }
+                //}
+                //catch (Exception ex)
+                //{
+                //    _controller.ModelState
+                //               .AddModelError(string.Empty, ex.Message);
+                //}
             }
 
             return OrDefault(_fail, result);

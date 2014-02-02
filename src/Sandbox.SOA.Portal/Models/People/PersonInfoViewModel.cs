@@ -2,9 +2,9 @@
 
 namespace Sandbox.SOA.Portal.Models.People
 {
-    public class PersonDeleteViewModel
+    public class PersonInfoViewModel
     {
         public Guid Identifier { get; set; }
-        public PersonNameEditViewModel Name { get; set; }
+        public PersonNameViewModel Name { get; set; }
     }
 }

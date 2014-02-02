@@ -1,4 +1,4 @@
-﻿@model IFormViewModel
+﻿@model FormFooterViewModel
 
 <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
@@ -17,12 +17,12 @@
             }
             @if (Model.Close != null)
             {
-                <a href="@Model.Close(Url, Model)" class="btn btn-default">@LinkResources.Close</a>
+                <a href="@Model.Close" class="btn btn-default">@LinkResources.Close</a>
             }
             <span class="form-status"></span>
             @if (Model.Delete != null)
             {
-                <a href="@Model.Delete(Url, Model)" data-toggle="modal" data-target="#modal" class="btn btn-default pull-right">@LinkResources.Delete</a>
+                <a href="@Model.Delete" data-toggle="modal" data-target="#modal" class="btn btn-default pull-right">@LinkResources.Delete</a>
             }
         </p>
     </div>

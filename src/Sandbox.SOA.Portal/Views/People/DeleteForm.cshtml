@@ -1,4 +1,4 @@
-﻿@model Sandbox.SOA.Portal.Models.People.PersonDeleteViewModel
+﻿@model PersonDeleteViewModel
 
 <form action="@Url.PersonDelete(Model.Identifier)"
       method="POST"
@@ -9,6 +9,6 @@
 
     </div>
     <div class="panel-footer">
-        @Html.EditorFor(m => m, "FormFooter")
+        @Html.FormDelete(Url.PersonEdit(Model.Identifier))
     </div>
 </form>

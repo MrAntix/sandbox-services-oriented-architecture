@@ -1,7 +1,7 @@
-﻿@model Sandbox.SOA.Common.Contracts.People.Addresses.PersonAddressSearchResult
+﻿@model PersonAddressesIndexViewModel
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = Model.Person.Name.Full + "'s Addresses";
 }
 
 @section breadcrumb{
@@ -14,4 +14,8 @@
           .Render())
 }
 
+@foreach (var address in Model.Items)
+{
+    @address.Name
+}
 

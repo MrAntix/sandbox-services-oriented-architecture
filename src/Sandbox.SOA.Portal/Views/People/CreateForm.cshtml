@@ -1,15 +1,14 @@
-﻿@using Sandbox.SOA.Portal.Helpers
-@model Sandbox.SOA.Portal.Models.People.PersonCreateViewModel
+﻿@model PersonCreateViewModel
 
 <form action="@Url.PersonCreate()"
       method="POST"
       role="form" class="form-horizontal">
     <div class="panel-body">
     
-        @Html.EditorFor(m=>m.Name)
+        @Html.EditorFor(m => m.Name)
 
     </div>
     <div class="panel-footer">
-        @Html.EditorFor(m => m, "FormFooter")
+        @Html.FormCreate(Url.People())
     </div>
 </form>

@@ -1,12 +1,12 @@
-﻿@model Sandbox.SOA.Portal.Models.People.PersonNameEditViewModel
+﻿@model PersonNameEditViewModel
 
-@{ 
+@{
     Layout = "~/Views/Shared/EditorTemplates/_Layout.cshtml";
     ViewData["class"] = "person-name";
 }
 <div class="input-group">
-    @Html.TextBoxFor(m=>m.First, new {placeholder="First", @class="form-control"})
-    @Html.TextBoxFor(m=>m.Last, new {placeholder="Last", @class="form-control"})
+    @Html.TextBoxFor(m => m.First, new {placeholder = "First", @class = "form-control"})
+    @Html.TextBoxFor(m => m.Last, new {placeholder = "Last", @class = "form-control"})
 </div>
-@Html.ValidationMessageFor(m=>m.First)
-@Html.ValidationMessageFor(m=>m.Last)
+@Html.ValidationMessageFor(m => m.First)
+@Html.ValidationMessageFor(m => m.Last)

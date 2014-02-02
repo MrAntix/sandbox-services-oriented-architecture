@@ -3,6 +3,7 @@ using System.Web.Mvc;
 
 using Sandbox.SOA.Common.Contracts.People.Addresses;
 using Sandbox.SOA.Common.Services;
+using Sandbox.SOA.Portal.Models.PersonAddresses;
 using Sandbox.SOA.Portal.Properties;
 
 namespace Sandbox.SOA.Portal.Controllers
@@ -21,14 +22,14 @@ namespace Sandbox.SOA.Portal.Controllers
 
         public PersonAddressesController() :
             this(new ClientCommandHandler(Settings.Default.ServicesApiUrl)
-                     .Get<PersonAddressSearchCriteria, PersonAddressSearchResult>("people/{person.identifier}/addresses"))
+                     .Get<PersonAddressSearchCriteria, PersonAddressesIndexViewModel>("people/{person.identifier}/addresses"))
         {
         }
 
         [Route("", Name = RouteConfig.PersonAddresses)]
         public async Task<ActionResult> Index(PersonAddressSearchCriteria model)
         {
-            return _actionHandler.With(model).Returns<PersonAddressSearchResult>();
+            return _actionHandler.With(model).Returns<PersonAddressesIndexViewModel>();
         }
     }
 }

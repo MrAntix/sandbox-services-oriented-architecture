@@ -5,33 +5,32 @@
 else
 {
     <fieldset>
-    @foreach (var prop in ViewData.ModelMetadata.Properties
-                .Where(pm => pm.ShowForEdit && !ViewData.TemplateInfo.Visited(pm)))
-    {
-        if (prop.HideSurroundingHtml)
+        @foreach (var prop in ViewData.ModelMetadata.Properties
+                                      .Where(pm => pm.ShowForEdit && !ViewData.TemplateInfo.Visited(pm)))
         {
-            @Html.Editor(prop.PropertyName)
-        }
-        else
-        {
-            
-            var className = String.Empty;
-            if (ViewData.ModelState[prop.PropertyName] != null 
-                    && ViewData.ModelState[prop.PropertyName].Errors != null 
-                    && ViewData.ModelState[prop.PropertyName].Errors.Count > 0)
+            if (prop.HideSurroundingHtml)
             {
-                className = "invalid";
-            }    
-            <div class="form-field @className">
-                @Html.Label(prop.PropertyName)
+                @Html.Editor(prop.PropertyName)
+            }
+            else
+            {
+                var className = String.Empty;
+                if (ViewData.ModelState[prop.PropertyName] != null
+                    && ViewData.ModelState[prop.PropertyName].Errors != null
+                    && ViewData.ModelState[prop.PropertyName].Errors.Count > 0)
+                {
+                    className = "invalid";
+                }
+                <div class="form-field @className">
+                    @Html.Label(prop.PropertyName)
 
-                <div class="form-field-edit">
-                    @Html.Editor(prop.PropertyName)
+                    <div class="form-field-edit">
+                        @Html.Editor(prop.PropertyName)
+                    </div>
+
+                    @Html.ValidationMessage(prop.PropertyName)
                 </div>
-
-                @Html.ValidationMessage(prop.PropertyName)
-            </div>
+            }
         }
-    }
     </fieldset>
 }
